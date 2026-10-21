@@ -1,140 +1,159 @@
-# 森林斗地主
+# Forest Dou Dizhu 森林斗地主
 
-一款卡通风格的网页斗地主游戏。你选一位「森林小吃团」的小动物入座，和另外两位 AI 小伙伴对战，用松果一决胜负。
+A cute cartoon card game based on **Dou Dizhu**, a classic Chinese card game where one landlord plays against two farmers. Pick a character from the **Forest Snack Squad** and play against two AI friends. The goal is to win pinecones.
 
-纯前端单文件，无需安装、无需服务器，用浏览器打开 `index.html` 就能玩。
-
----
-
-## 游戏特色
-
-- **6 位原创角色可选**：每个角色有自己的出牌性格，头像会随局势变表情（得意、紧张、开心、哭哭）
-- **三档辣度**：微甜 / 中辣 / 爆辣，爆辣的 AI 会记牌、会配合、会卡你最后一张
-- **三种份量**：决定一整场打多久，有人松果输光就进入总结算
-- **加倍玩法**：定完地主后可以选择加倍，增加心理战
-- **出牌限时**：没有提示按钮，全靠自己算牌，倒计时最后 5 秒会提醒
-- **特色牌特效 + 音效**：顺子、连对、飞机、炸弹、王炸、春天都有专属动画和声音
-- **总结算颁奖**：大赢家领奖台，外加炸弹狂魔、地主专业户等趣味称号
-- **公平机制**：不能重新发牌；中途离开按认输计算；叫地主阶段刷新也会继续同一副牌
+**Play online:** https://sf-ryanyan.github.io/Forestdoudizhu/
 
 ---
 
-## 角色：森林小吃团
+## Overview
 
-| 角色 | 名字 | 性格 & 出牌风格 |
+Forest Dou Dizhu is a single-player web game. You play against two AI opponents, and each one has its own personality and play style. A match lasts until one player runs out of pinecones. Then a final ceremony names the big winner.
+
+The game runs entirely in the browser. You do not need to install anything, and there is no server and no login. The interface is in Chinese.
+
+---
+
+## Features
+
+- **6 original characters**: each one has its own play style and facial expressions (smug, nervous, happy, crying)
+- **3 difficulty levels ("spice levels")**: Mild Sweet, Medium Spicy, Extra Spicy. At Extra Spicy, the AI tracks played cards, works with its teammate, and tries to block your last card.
+- **3 match lengths ("portion sizes")**: Small, Medium, Large
+- **Doubling round**: after the landlord is chosen, each player can double the stakes
+- **Turn timer**: there is no hint button, so you plan every move yourself
+- **Special effects and sounds** for straights, consecutive pairs, airplanes, bombs, rockets, and Spring wins
+- **Final awards**: a winner's podium plus fun titles such as Bomb Maniac and Best Teammate
+- **Fair play rules**: no redeals, and leaving in the middle of a round counts as a forfeit
+
+---
+
+## Characters: The Forest Snack Squad
+
+| Animal | Name | Play Style |
 |---|---|---|
-| 狐狸 | 辣条 | 嘴硬爱冒险，最爱扔炸弹 |
-| 熊猫 | 汤圆 | 慢吞吞但很稳，从不乱出大牌 |
-| 橘猫 | 年糕 | 平时懒洋洋，关键时刻突然爆发 |
-| 柴犬 | 豆包 | 憨憨的，最会和队友打配合 |
-| 仓鼠 | 瓜子 | 囤牌狂魔，大牌捂到最后 |
-| 兔子 | 棉花糖 | 手快，最爱出顺子和连对 |
+| Fox | 辣条 Latiao (Spicy Strip) | Bold and risky, loves throwing bombs |
+| Panda | 汤圆 Tangyuan (Rice Ball) | Slow and steady, never wastes big cards |
+| Orange Cat | 年糕 Niangao (Rice Cake) | Lazy most of the time, explodes at the key moment |
+| Shiba Inu | 豆包 Doubao (Bean Bun) | Friendly, the best team player |
+| Hamster | 瓜子 Guazi (Sunflower Seed) | Hoards big cards until the very end |
+| Bunny | 棉花糖 Mianhuatang (Marshmallow) | Fast hands, loves straights and pairs |
 
-你选 1 位，另外 2 位对手从剩下的角色中随机出场。
-
----
-
-## 开局设置
-
-**辣度（难度）与限时**
-
-| 辣度 | AI 表现 | 每手出牌时间 |
-|---|---|---|
-| 微甜 | 偶尔犯迷糊，适合放松 | 30 秒 |
-| 中辣 | 正常对手，有来有回 | 25 秒 |
-| 爆辣 | 记牌、配合、卡最后一张 | 20 秒 |
-
-- 地主第一手额外多 10 秒；叫分 15 秒；加倍 10 秒
-- 超时：跟牌自动「不要」，自由出牌自动出最小的一张，叫分自动「不叫」，加倍自动「不加倍」
-
-**份量（一场的长度）**
-
-| 份量 | 起始松果 | 大约时长 |
-|---|---|---|
-| 小份 | 500 | 15–20 分钟 |
-| 中份 | 1000 | 30–40 分钟 |
-| 大份 | 2000 | 1 小时以上 |
+You pick 1 character. The other 2 are chosen at random from the rest.
 
 ---
 
-## 规则简介
-
-- 3 人对局，54 张牌，每人 17 张，留 3 张底牌
-- 轮流叫 1 / 2 / 3 分，最高分当地主并拿走底牌；都不叫时，第一个叫分的人被安排当地主（1 分）
-- 加倍：两位农民先选，地主最后选
-- 地主先出，下家要出相同牌型、相同张数、更大的牌，或者「不要」
-- 牌的大小：大王 > 小王 > 2 > A > K > … > 3
-- 支持牌型：单张、对子、三张、三带一、三带二、顺子、连对、飞机（带单/带对）、四带二、炸弹、王炸
-
-**计分**
-
-```
-基础分 = 底分 20 × 叫分 × 2^炸弹数（春天 / 反春再 ×2）
-地主和每位农民之间的输赢 = 基础分 × 地主加倍 × 该农民加倍
-```
-
-有人松果输光，这一场结束，松果最多的人是大赢家。
-
----
-
-## 操作方式
-
-| 操作 | 方式 |
-|---|---|
-| 选牌 | 点击牌；按住拖动可连续选择 |
-| 选同点数 | 双击一张牌 |
-| 清空选择 | 在手牌区点右键 |
-| 出牌 | 「出牌」按钮或回车键 |
-| 不要 | 「不要」按钮或空格键 |
-| 认输 | 右上角「认输」 |
-| 菜单 | 右上角「菜单」：回主菜单 / 新游戏 / 游戏规则 / 声音开关 |
-
----
-
-## 如何运行
-
-**本地游玩**
-
-1. 下载或克隆这个仓库
-2. 用浏览器（推荐 Chrome、Edge、Safari 最新版）直接打开 `index.html`
-
-**发布到 GitHub Pages**
-
-1. 打开仓库的 **Settings → Pages**
-2. Source 选择 **Deploy from a branch**
-3. Branch 选择 `main`，文件夹选 `/ (root)`，点 Save
-4. 等 1–2 分钟，页面顶部会显示网站地址
-
----
-
-## 技术说明
-
-- 单个 `index.html`，HTML + CSS + 原生 JavaScript，没有任何第三方依赖或构建步骤
-- 角色、卡牌、图标全部用内嵌 SVG 绘制
-- 音效用 Web Audio API 实时生成，不需要音频文件
-- 彩带、烟花、花瓣等特效用 Canvas 粒子实现
-- 进度和设置保存在浏览器的 localStorage，只存在你自己的浏览器里
-- 字体来自 Google Fonts（ZCOOL KuaiLe、Noto Sans SC、Fredoka），离线时会自动用系统字体
-- 主要为电脑浏览器设计，手机上也能打开
-
----
-
-## 文件结构
+## Contents
 
 ```
 .
-├── index.html   # 游戏本体（全部代码都在这里）
-└── README.md    # 说明文档
+├── index.html   # The whole game: HTML, CSS, and JavaScript in one file
+└── README.md    # This file
 ```
 
 ---
 
-## 版本记录
+## How to Play
 
-- **V3**：强制地主、菜单（回主菜单 / 新游戏）、份量选择、加倍、双击选同点数、总结算趣味颁奖
-- **V2**：6 位可选角色与表情、三档辣度、音效与特色牌特效、松果赛制与大赢家结算、认输、出牌限时
-- **V1**：基础斗地主规则、叫分、AI 对手、计分
+1. Open the game in a desktop browser (Chrome, Edge, or Safari).
+2. Choose your **character**, **spice level**, and **portion size**, then press Start.
+3. **Bid** for landlord: 1, 2, or 3 points, or pass.
+4. **Double** or not after the landlord is chosen.
+5. **Play cards**: select your cards, then press Play (or Enter). Press Pass (or Space) to skip.
+6. The first team to play all of its cards wins the round.
+
+**Controls**
+
+| Action | How |
+|---|---|
+| Select a card | Click it, or click and drag across several cards |
+| Select all cards of one rank | Double-click a card |
+| Clear selection | Right-click in your hand |
+| Play | Play button or Enter |
+| Pass | Pass button or Space |
+| Forfeit | Forfeit button (top right) |
+| Menu | Main menu, New game, Rules, Sound on/off |
 
 ---
 
-作者：Ryan Yan　·　角色与美术均为原创
+## Rules
+
+**Setup**
+- 3 players, 54 cards (including 2 jokers). Each player gets 17 cards, and 3 cards are left as the bottom cards.
+- The highest bidder becomes the **landlord** and takes the 3 bottom cards. If nobody bids, the first player to bid becomes landlord at 1 point.
+- The other two players are **farmers** and play as a team.
+
+**Playing**
+- The landlord plays first. Each next player must play the same card type with the same number of cards and a higher rank, or pass.
+- If both other players pass, the last player who played starts a new round of any type.
+- Card ranks from high to low: Big Joker > Small Joker > 2 > A > K > Q > J > 10 > ... > 3. Suits do not matter.
+
+**Card types**
+
+| Type | Example |
+|---|---|
+| Single | 5 |
+| Pair | 5 5 |
+| Triple | 5 5 5 |
+| Triple + 1 | 5 5 5 + 3 |
+| Triple + Pair | 5 5 5 + 3 3 |
+| Straight (5+ cards, up to A) | 3 4 5 6 7 |
+| Consecutive pairs (3+ pairs) | 3 3 4 4 5 5 |
+| Airplane (consecutive triples, can add singles or pairs) | 3 3 3 4 4 4 + 5 6 |
+| Four + 2 | 5 5 5 5 + 3 7 |
+| Bomb (beats any normal type) | 8 8 8 8 |
+| Rocket (highest of all) | Small Joker + Big Joker |
+
+**Time limits**
+
+| Spice Level | Per turn |
+|---|---|
+| Mild Sweet | 30 seconds |
+| Medium Spicy | 25 seconds |
+| Extra Spicy | 20 seconds |
+
+The landlord gets 10 extra seconds on the first turn. Bidding has 15 seconds and doubling has 10 seconds. When time runs out, the game passes for you, or plays your lowest card if you must lead.
+
+**Scoring**
+
+```
+Base score = 20 × bid × 2^(number of bombs)   (× 2 again for a Spring)
+Each landlord–farmer result = base score × landlord's double × that farmer's double
+```
+
+| Portion Size | Starting Pinecones | About |
+|---|---|---|
+| Small | 500 | 15–20 minutes |
+| Medium | 1,000 | 30–40 minutes |
+| Large | 2,000 | 1 hour or more |
+
+The match ends when any player runs out of pinecones. The player with the most pinecones is the big winner.
+
+---
+
+## Built With
+
+- Plain HTML, CSS, and JavaScript in a single file, with no frameworks and no build step
+- All characters, cards, and icons are drawn with inline SVG
+- Sound effects are generated live with the Web Audio API, so there are no audio files
+- Confetti, fireworks, and petals use Canvas particles
+- Progress and settings are saved only in your own browser (localStorage)
+
+---
+
+## Acknowledgements
+
+- **Dou Dizhu**, the traditional Chinese card game that inspired this project
+- **Google Fonts**: ZCOOL KuaiLe, Noto Sans SC, and Fredoka
+- Built with the help of AI coding tools
+
+---
+
+## Disclaimer
+
+This game is for entertainment only. Pinecones are play points with no real-world value, and the game does not involve real money or gambling of any kind. All characters and artwork are original. The game does not collect any personal data.
+
+---
+
+## About Me
+
+Hi, I'm **Ryan Yan**, a data analyst. I enjoy building small, fun web projects with AI tools.
