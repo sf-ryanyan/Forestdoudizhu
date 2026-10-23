@@ -58,6 +58,10 @@ button{font:inherit;color:inherit}
 .chip .k{font-size:12px;font-weight:700;opacity:.65;letter-spacing:.1em}
 .chip .v{font-family:var(--num);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
 .chip.hot{background:var(--sun)}
+.chip.help{cursor:help}
+.chip.help:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
+.chip .q{align-self:center;width:16px;height:16px;border-radius:50%;background:var(--ink);color:var(--cream);font-family:var(--num);font-size:11px;font-weight:700;display:grid;place-items:center;line-height:1}
+.pop{position:fixed;z-index:70;max-width:min(300px,calc(100vw - 32px));background:var(--ink);color:var(--cream);border-radius:14px;padding:10px 14px;font-size:14px;font-weight:700;line-height:1.55;box-shadow:0 5px 0 rgba(43,33,27,.25);pointer-events:none}
 .top-actions{display:flex;gap:8px}
 .icon-btn{width:42px;height:42px;padding:0;display:grid;place-items:center}
 .icon-btn svg{width:22px;height:22px}
@@ -74,6 +78,7 @@ button{font:inherit;color:inherit}
 .btn.small:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
 .btn.big{font-size:28px;padding:15px 44px}
 .btn.flagbtn{background:var(--cream)}
+.btn.ghost{background:var(--paper-sel);font-size:17px;padding:10px 16px;box-shadow:0 4px 0 var(--ink)}
 .menu-wrap{position:relative}
 .menu{position:absolute;right:0;top:calc(100% + 10px);min-width:196px;background:var(--cream);border:3px solid var(--ink);border-radius:18px;box-shadow:0 5px 0 var(--ink);padding:8px;display:grid;gap:2px;z-index:30;animation:popIn .15s both;transform-origin:top right}
 .menu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:10px 12px;border:none;border-radius:12px;background:none;font-weight:700;font-size:15px;cursor:pointer}
@@ -106,6 +111,7 @@ button{font:inherit;color:inherit}
 
 /* ---------- seats ---------- */
 .seat{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;align-self:start}
+.seat .info{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
 .avatar-wrap{position:relative}
 .avatar{width:110px;height:110px;border-radius:50%;background:var(--cream);border:4px solid var(--ink);box-shadow:0 6px 0 var(--ink);overflow:hidden;transition:box-shadow .2s,transform .2s}
 .avatar svg{display:block;width:100%;height:100%}
@@ -119,8 +125,9 @@ button{font:inherit;color:inherit}
 .name{font-family:var(--display);font-size:22px;margin-top:12px;display:flex;align-items:baseline;gap:6px;line-height:1}
 .name small{font-family:var(--body);font-size:12px;font-weight:700;opacity:.6}
 .meta{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.count,.score{display:inline-flex;align-items:center;gap:5px;background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:2px 10px 2px 6px;font-size:13px;font-weight:700}
+.count,.score{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:2px 10px 2px 6px;font-size:13px;font-weight:700}
 .count b,.score b{font-family:var(--num);font-size:16px;font-variant-numeric:tabular-nums}
+.count .u,.score .u{font-size:11px;opacity:.75}
 .score svg{width:14px;height:17px;display:block}
 .score.broke{background:var(--berry);color:var(--cream)}
 .mini-back{width:14px;height:19px;border-radius:4px;border:2px solid var(--ink);background:repeating-linear-gradient(45deg,rgba(255,250,240,.5) 0 2px,transparent 2px 4px),var(--tomato);display:inline-block}
@@ -154,14 +161,16 @@ button{font:inherit;color:inherit}
 .timer.hurry b{color:var(--berry)}
 .toast{position:absolute;left:50%;top:-38px;transform:translate(-50%,6px);background:var(--ink);color:var(--cream);font-weight:700;font-size:14px;padding:7px 16px;border-radius:999px;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;z-index:9}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.hand{display:flex;justify-content:center;align-items:flex-end;height:calc(var(--ch) + 36px);padding-top:30px;min-width:0}
-.hand .card+.card{margin-left:calc(var(--step,36px) - var(--cw))}
+.hand{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:calc(var(--ch) + 36px);padding-top:30px;min-width:0;touch-action:none}
+.hand-row{display:flex;justify-content:center;align-items:flex-end}
+.hand-row .card+.card{margin-left:calc(var(--step,36px) - var(--cw))}
+.hand-row+.hand-row{margin-top:calc(var(--ch) * -0.36)}
 .tip{text-align:center;font-size:12px;font-weight:700;opacity:.55;margin-top:8px;letter-spacing:.06em}
 
 /* ---------- cards ---------- */
 .card{position:relative;flex:none;width:var(--cw);height:var(--ch);background:var(--cream);border:3px solid var(--ink);border-radius:12px;box-shadow:0 3px 0 var(--shade);color:var(--ink);user-select:none;-webkit-user-select:none;transition:transform .12s ease,box-shadow .12s,background-color .12s}
 .hand .card{cursor:pointer}
-.hand .card:hover{transform:translateY(-7px)}
+@media (hover:hover){.hand .card:hover{transform:translateY(-7px)}}
 .hand .card.sel{transform:translateY(-26px);background:var(--paper-sel);box-shadow:0 0 0 3px var(--sun),0 7px 0 var(--shade)}
 .card.red{color:var(--berry)}
 .corner{position:absolute;top:5px;left:6px;display:flex;flex-direction:column;align-items:center;line-height:1;gap:1px;font-family:var(--num);font-weight:700}
@@ -185,7 +194,7 @@ button{font:inherit;color:inherit}
 .card.mini .jk-name{font-size:14px;top:4px;left:3px;letter-spacing:1px}
 .card.mini .jk-star{width:24px;height:24px;right:4px;bottom:4px}
 .mini-row{position:relative;display:flex;align-items:flex-end}
-.mini-row .card+.card{margin-left:-31px}
+.mini-row .card+.card{margin-left:calc(var(--mstep,23px) - var(--cw))}
 .mini-row .card{animation:flyIn .28s both;animation-delay:calc(var(--i,0) * 25ms)}
 .mini-row.reveal .card{animation:none;filter:saturate(.75)}
 .mini-row.bounce .card{animation:hop .55s both;animation-delay:calc(var(--i,0) * 55ms)}
@@ -234,28 +243,31 @@ button{font:inherit;color:inherit}
 .panel{position:relative;width:min(640px,100%);background:var(--cream);border:4px solid var(--ink);border-radius:32px;box-shadow:0 9px 0 var(--ink);padding:32px 34px;text-align:center;animation:popIn .3s both}
 .panel h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
 .lead{margin:8px 0 18px;font-size:15px;font-weight:700;opacity:.72;line-height:1.6}
-.start{width:min(820px,100%)}
-.start h2{font-size:clamp(42px,7vw,64px);letter-spacing:5px}
-.sec-title{font-family:var(--display);font-size:20px;letter-spacing:2px;margin:6px 0 10px;text-align:left}
-.picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}
-.pick{display:grid;grid-template-columns:64px minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;align-items:center;text-align:left;background:var(--cream);border:3px solid var(--ink);border-radius:20px;padding:10px 12px;cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .1s,background-color .15s}
+.start{width:min(840px,100%);padding:24px 30px}
+.start h2{font-size:clamp(38px,6vw,56px);letter-spacing:5px}
+.how-win{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0 14px;font-size:15px;font-weight:700;line-height:1.5}
+.how-win b{background:var(--sun);border:2px solid var(--ink);border-radius:999px;padding:1px 10px}
+.sec-title{font-family:var(--display);font-size:19px;letter-spacing:2px;margin:4px 0 8px;text-align:left;display:flex;align-items:baseline;gap:4px 10px;flex-wrap:wrap}
+.sec-title small{font-family:var(--body);font-size:12.5px;font-weight:700;letter-spacing:0;opacity:.65}
+.picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.pick{display:grid;grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:8px 10px;cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .1s,background-color .15s}
 .pick:hover{transform:translateY(-2px)}
 .pick:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
-.pick .avatar{grid-row:1 / span 2;width:64px;height:64px;border-width:3px;box-shadow:none}
+.pick .avatar{grid-row:1 / span 2;width:56px;height:56px;border-width:3px;box-shadow:none}
 .pick b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1}
 .pick b small{font-family:var(--body);font-size:12px;font-weight:700;opacity:.6;margin-left:6px}
-.pick span{font-size:12.5px;font-weight:700;opacity:.7;line-height:1.4;align-self:start;margin-top:4px}
+.pick span{font-size:12px;font-weight:700;opacity:.7;line-height:1.4;align-self:start;margin-top:3px}
 .pick[aria-checked="true"]{background:var(--sun);transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
-.diffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px}
-.diffbtn{background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:10px 12px;cursor:pointer;box-shadow:0 4px 0 var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .1s}
+.diffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.diffbtn{background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:8px 10px;cursor:pointer;box-shadow:0 4px 0 var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .1s}
 .diffbtn:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
 .diffbtn .ic{display:flex;gap:1px;height:24px}
 .diffbtn .ic svg{width:22px;height:24px}
 .diffbtn b{font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:2px;line-height:1}
-.diffbtn span{font-size:12px;font-weight:700;opacity:.7}
+.diffbtn span{font-size:12px;font-weight:700;opacity:.75;line-height:1.4}
 .diffbtn[aria-checked="true"]{background:var(--tomato);color:var(--cream);transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
 .start-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.foot{font-size:13px;font-weight:700;opacity:.65;margin-top:14px;line-height:1.6}
+.foot{font-size:13px;font-weight:700;opacity:.65;margin-top:12px;line-height:1.6}
 .foot svg{width:12px;height:15px;vertical-align:-2px}
 .linkish{background:none;border:none;padding:0;font-weight:900;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .linkish:focus-visible{outline:2px dashed var(--ink);outline-offset:3px}
@@ -269,6 +281,44 @@ button{font:inherit;color:inherit}
 .ptable div{display:flex;justify-content:space-between;gap:8px;border-bottom:2px dotted var(--honey-2);padding:3px 0}
 .ptable em{font-style:normal;font-family:var(--num);font-weight:600;opacity:.75;white-space:nowrap}
 .close-row{text-align:center;margin-top:22px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+.tut{width:min(720px,100%);text-align:left;padding:26px 30px 22px}
+.tut-step{font-family:var(--num);font-weight:700;font-size:13px;letter-spacing:.12em;opacity:.6;text-align:center}
+.tut h2{font-size:clamp(30px,5vw,40px);letter-spacing:3px;text-align:center;margin:4px 0 14px}
+.tut-visual{display:flex;justify-content:center;align-items:flex-end;gap:14px;flex-wrap:wrap;background:var(--meadow);border:2.5px solid var(--ink);border-radius:20px;padding:16px 12px;margin-bottom:14px}
+.tut ul{margin:0;padding-left:22px;display:grid;gap:6px}
+.tut li{font-size:15.5px;line-height:1.65;font-weight:500}
+.tut li b{font-weight:900}
+.who{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--display);font-size:17px}
+.who .avatar{width:64px;height:64px;border-width:3px;box-shadow:0 3px 0 var(--ink)}
+.who .tag{font-family:var(--body);font-size:12px;font-weight:900;padding:2px 10px;border-radius:999px;border:2px solid var(--ink);color:var(--cream);background:var(--leaf)}
+.who .tag.ll{background:var(--tomato)}
+.vs{font-family:var(--display);font-size:30px;align-self:center;color:var(--rim)}
+.tcards{display:flex;align-items:flex-end}
+.tcards .card+.card{margin-left:calc(var(--cw) * -0.42)}
+.tcol{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;font-weight:900}
+.tmark{font-family:var(--display);font-size:22px;align-self:center}
+.tmark.ok{color:var(--leaf)}.tmark.no{color:var(--berry)}
+.rank-row{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center}
+.rank-row .lt{font-family:var(--num);font-weight:700;font-size:16px;opacity:.6}
+.types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin-bottom:12px}
+.type{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--paper-sel);border:2px solid var(--ink);border-radius:14px;padding:6px 10px;min-width:0}
+.type b{font-family:var(--display);font-weight:400;font-size:17px;white-space:nowrap}
+.type small{display:block;font-size:11.5px;font-weight:700;opacity:.65}
+.type .tcards .card+.card{margin-left:calc(var(--cw) * -0.5)}
+.tut-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}
+.dots{display:flex;gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);background:var(--cream)}
+.dots i.on{background:var(--tomato)}
+.tut-nav .btn{font-size:18px;padding:9px 18px}
+.tut-skip{font-weight:900;font-size:14px}
+.tipcard{width:min(480px,100%);text-align:left;padding:24px 26px}
+.tipcard .tip-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.tipcard .tip-ic{width:46px;height:46px;flex:none;border-radius:14px;background:var(--sun);border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:26px}
+.tipcard h2{font-size:28px;letter-spacing:2px;text-align:left}
+.tipcard p{font-size:16px;line-height:1.7;font-weight:500;margin:0 0 6px}
+.tipcard label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;opacity:.7;margin-top:10px;cursor:pointer}
+.tipcard .close-row{justify-content:flex-end;margin-top:14px}
 
 .confirm{width:min(420px,100%)}
 .confirm h2{font-size:36px;letter-spacing:2px}
@@ -356,45 +406,185 @@ button{font:inherit;color:inherit}
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
-/* ---------- narrow screens ---------- */
+/* ---------- tablets and small laptops ---------- */
 @media (max-width:860px){
-  :root{--cw:56px;--ch:80px}
+  :root{--cw:66px;--ch:92px}
   .brand h1{font-size:26px}
   .chips{margin-left:0}
   .board{border-radius:30px;min-height:560px}
-  .arena{grid-template-columns:92px minmax(0,1fr) 92px;padding:20px 14px 0;gap:8px}
-  .avatar{width:66px;height:66px;border-width:3px;box-shadow:0 4px 0 var(--ink)}
+  .arena{grid-template-columns:124px minmax(0,1fr) 124px;padding:20px 14px 0;gap:8px}
+  .avatar{width:68px;height:68px;border-width:3px;box-shadow:0 4px 0 var(--ink)}
   .alert{width:26px;height:26px;font-size:15px}
-  .name{font-size:16px}
+  .name{font-size:17px}
   .name small{display:none}
   .role{font-size:12px;padding:2px 7px}
-  .bubble{max-width:120px;font-size:12px}
+  .bubble{max-width:130px;font-size:12px}
   .mine{grid-template-columns:minmax(0,1fr);padding:4px 14px 16px}
   .seat.self{flex-direction:row;justify-content:center;gap:10px;padding-bottom:0;order:2}
   .seat.self .avatar{width:44px;height:44px}
   .seat.self .name{margin-top:0}
+  .seat.self .info{flex-direction:row;align-items:center}
   .seat.self .role{bottom:-9px}
+  .seat.self .bubble{display:none}
   .btn{font-size:18px;padding:10px 18px}
-  .rk{font-size:18px}.st{font-size:14px}.pip{font-size:28px}
-  .jk-name{font-size:15px}.jk-star{width:26px;height:26px}
-  .card.mini{--cw:40px;--ch:58px}
-  .card.mini .rk{font-size:14px}.card.mini .st{font-size:11px}.card.mini .pip{font-size:18px}
+  .rk{font-size:19px}.st{font-size:14px}.pip{font-size:30px}
+  .jk-name{font-size:15px}.jk-star{width:28px;height:28px}
+  .card.mini{--cw:42px;--ch:60px}
+  .card.mini .rk{font-size:15px}.card.mini .st{font-size:11px}.card.mini .pip{font-size:19px}
   .card.mini .jk-name{font-size:11px}.card.mini .jk-star{width:16px;height:16px}
-  .mini-row .card+.card{margin-left:-25px}
   .status{font-size:15px;padding:6px 14px}
   .ztag{font-size:18px;padding:4px 12px}
   .kitty-label{display:none}
   .picker{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pick{grid-template-columns:48px minmax(0,1fr)}
-  .pick .avatar{width:48px;height:48px}
-  .pick span{display:none}
-  .diffbtn span{display:none}
   .ptable{grid-template-columns:minmax(0,1fr)}
   .panel{padding:24px 18px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pod.first .avatar{width:80px;height:80px}
   .pod .avatar{width:56px;height:56px}
   .plane{width:130px}
+}
+/* ---------- phones (portrait) ---------- */
+@media (max-width:600px){
+  :root{--cw:52px;--ch:74px}
+  .app{gap:10px;padding-block:10px 14px}
+  .topbar{gap:8px}
+  .brand{gap:8px}
+  .brand-mark{width:34px;height:34px;border-radius:10px;border-width:2.5px;box-shadow:0 3px 0 var(--ink)}
+  .brand-mark svg{width:19px;height:19px}
+  .brand h1{font-size:22px;letter-spacing:1px}
+  .top-actions{margin-left:auto;gap:6px}
+  .btn.small{font-size:14px;padding:7px 12px}
+  .chips{order:3;width:100%;justify-content:center;gap:6px}
+  #roundChip,#diffChip{display:none}
+  .chip{padding:3px 10px;box-shadow:0 2px 0 var(--ink)}
+  .chip .v{font-size:15px}
+  .board{border-radius:24px;min-height:0;border-width:3px;box-shadow:inset 0 0 0 7px var(--honey-2),inset 0 0 0 9px var(--rim),0 6px 0 var(--ink)}
+  .arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "c c";padding:16px 14px 0;gap:10px 6px}
+  #seat2{grid-area:l;justify-self:start}
+  #seat1{grid-area:r;justify-self:end}
+  .center{grid-area:c}
+  .arena .seat{flex-direction:row;align-items:center;gap:8px}
+  .arena .seat.right{flex-direction:row-reverse}
+  .arena .seat .info{align-items:flex-start;gap:4px}
+  .arena .seat.right .info{align-items:flex-end}
+  .avatar{width:54px;height:54px}
+  .name{margin-top:0;font-size:16px}
+  .role{bottom:-9px;font-size:11px}
+  .role svg{width:12px;height:12px}
+  .meta{gap:4px}
+  .count,.score{font-size:11px;padding:1px 7px 1px 4px;gap:3px}
+  .count b,.score b{font-size:13px}
+  .mini-back{width:11px;height:15px}
+  .score svg{width:11px;height:14px}
+  .thinking{height:8px}
+  .arena .seat .bubble{top:calc(100% + 12px);max-width:150px}
+  .seat.left .bubble{left:0;right:auto;transform-origin:top left}
+  .seat.right .bubble{right:0;left:auto;transform-origin:top right}
+  .seat.left .bubble::after{left:16px;top:-8px;transform:rotate(135deg)}
+  .seat.right .bubble::after{right:16px;left:auto;top:-8px;transform:rotate(135deg)}
+  .kitty-wrap{padding:5px 8px}
+  .zones{min-height:66px;gap:8px}
+  .zone{min-height:60px}
+  .status{font-size:14px;padding:5px 12px}
+  .mine{padding:2px 8px 12px}
+  .controls{gap:8px;min-height:52px}
+  .btn{font-size:17px;padding:9px 14px;letter-spacing:1px;box-shadow:0 4px 0 var(--ink)}
+  .btn.ghost{font-size:15px;padding:8px 12px}
+  .timer{width:46px;height:46px}
+  .timer b{font-size:16px}
+  .hand{padding-top:26px}
+  .rk{font-size:17px}.st{font-size:12px}.pip{font-size:24px}
+  .corner{top:4px;left:4px}
+  .jk-name{font-size:13px;top:4px;left:4px;letter-spacing:1px}.jk-star{width:22px;height:22px}
+  .card{border-width:2.5px;border-radius:10px}
+  .card.mini{--cw:36px;--ch:52px;border-width:2px;border-radius:7px}
+  .card.mini .rk{font-size:13px}.card.mini .st{font-size:10px}.card.mini .pip{font-size:16px}
+  .card.mini .corner{top:3px;left:3px}
+  .card.mini .jk-name{font-size:10px}.card.mini .jk-star{width:13px;height:13px}
+  .ztag{font-size:16px;padding:3px 10px;border-width:2.5px}
+  .tip{font-size:11px}
+  .start{padding:20px 14px}
+  .start h2{font-size:36px;letter-spacing:3px}
+  .how-win{font-size:13px;margin:6px 0 10px}
+  .sec-title{font-size:17px}
+  .sec-title small{font-size:11.5px}
+  .pick{grid-template-columns:44px minmax(0,1fr);padding:7px 8px;border-radius:14px}
+  .pick .avatar{width:44px;height:44px}
+  .pick b{font-size:18px}
+  .pick b small,.pick span{display:none}
+  .diffs{gap:6px}
+  .diffbtn{padding:7px 4px;border-radius:14px}
+  .diffbtn b{font-size:18px;letter-spacing:1px}
+  .diffbtn span{font-size:10.5px}
+  .diffbtn .ic svg{width:16px;height:18px}
+  .diffbtn .ic{height:18px}
+  .btn.big{font-size:22px;padding:12px 26px}
+  .tut{padding:20px 16px}
+  .tut li{font-size:14.5px}
+  .types{grid-template-columns:minmax(0,1fr)}
+  .tut-visual{gap:8px;padding:12px 8px}
+  .who .avatar{width:50px;height:50px}
+  .tipcard{padding:20px 18px}
+  .res-row{grid-template-columns:38px minmax(0,1fr) auto;gap:8px}
+  .res-row .t{display:none}
+  .res-row .avatar{width:38px;height:38px}
+}
+/* ---------- phones (landscape) ---------- */
+@media (max-height:520px) and (orientation:landscape){
+  :root{--cw:44px;--ch:62px}
+  .app{padding-block:4px 6px;gap:4px}
+  .topbar{flex-wrap:nowrap;gap:8px}
+  .brand-mark{width:28px;height:28px;border-radius:8px;border-width:2.5px;box-shadow:0 2px 0 var(--ink)}
+  .brand-mark svg{width:16px;height:16px}
+  .brand h1{font-size:18px;letter-spacing:1px}
+  #roundChip,#diffChip{display:none}
+  .chips{gap:5px;margin-left:auto}
+  .chip{padding:2px 9px;box-shadow:0 2px 0 var(--ink)}
+  .chip .v{font-size:14px}
+  .btn.small{font-size:13px;padding:5px 10px;box-shadow:0 2px 0 var(--ink)}
+  .board{min-height:0;border-radius:20px;border-width:3px;box-shadow:inset 0 0 0 6px var(--honey-2),inset 0 0 0 8px var(--rim),0 4px 0 var(--ink)}
+  .arena{grid-template-columns:136px minmax(0,1fr) 136px;padding:8px 14px 0;gap:6px}
+  .avatar{width:42px;height:42px;border-width:2.5px;box-shadow:0 3px 0 var(--ink)}
+  .role{font-size:10px;bottom:-8px;padding:1px 6px;border-width:2px}
+  .role svg{width:11px;height:11px}
+  .alert{width:20px;height:20px;font-size:12px}
+  .seat{gap:3px}
+  .seat .info{gap:3px}
+  .name{font-size:13px;margin-top:6px}
+  .meta{gap:3px;flex-wrap:nowrap}
+  .count,.score{font-size:10px;padding:0 6px 0 3px;gap:2px}
+  .count b,.score b{font-size:12px}
+  .count .u,.score .u{font-size:9px}
+  .mini-back{width:10px;height:13px}
+  .score svg{width:10px;height:12px}
+  .thinking{height:6px}
+  .center{gap:4px}
+  .kitty-wrap{padding:3px 6px;border-width:2px}
+  .card.mini{--cw:30px;--ch:42px;border-width:2px;border-radius:6px}
+  .card.mini .rk{font-size:11px}.card.mini .st{font-size:9px}.card.mini .pip{font-size:13px}
+  .card.mini .corner{top:2px;left:2px}
+  .card.mini .jk-name{font-size:9px}.card.mini .jk-star{width:11px;height:11px}
+  .zones{min-height:48px}
+  .zone{min-height:44px}
+  .ztag{font-size:14px;padding:2px 8px;border-width:2px;box-shadow:0 2px 0 var(--ink)}
+  .status{font-size:12px;padding:3px 10px;border-width:2px;box-shadow:0 2px 0 var(--ink)}
+  .mine{grid-template-columns:110px minmax(0,1fr);padding:0 14px 6px;gap:6px}
+  .seat.self{flex-direction:column;order:0;padding-bottom:2px}
+  .seat.self .info{flex-direction:column}
+  .seat.self .avatar{width:40px;height:40px}
+  .controls{min-height:38px;gap:6px}
+  .btn{font-size:14px;padding:6px 12px;box-shadow:0 3px 0 var(--ink);border-width:2.5px}
+  .btn.ghost{font-size:13px;padding:5px 10px}
+  .timer{width:36px;height:36px}
+  .timer b{font-size:13px}
+  .hand{padding-top:18px;min-height:calc(var(--ch) + 22px)}
+  .hand .card.sel{transform:translateY(-16px)}
+  .rk{font-size:15px}.st{font-size:11px}.pip{font-size:20px}
+  .corner{top:3px;left:3px}
+  .card{border-width:2px;border-radius:8px}
+  .jk-name{font-size:11px;top:3px;left:3px;letter-spacing:0}.jk-star{width:18px;height:18px}
+  .tip{display:none}
+  .bubble{font-size:11px;padding:5px 8px;max-width:130px}
 }
 </style>
 </head>
@@ -406,11 +596,11 @@ button{font:inherit;color:inherit}
       <h1>森林斗地主</h1>
     </div>
     <div class="chips">
-      <div class="chip"><span class="k">第</span><span class="v" id="roundV">1</span><span class="k">局</span></div>
-      <div class="chip"><span class="k">难度</span><span class="v" id="diffV" style="font-family:var(--display);font-weight:400">中辣</span></div>
-      <div class="chip"><span class="k">叫分</span><span class="v" id="bidV">—</span></div>
-      <div class="chip"><span class="k">炸弹</span><span class="v" id="bombV">0</span></div>
-      <div class="chip hot"><span class="k">倍数</span><span class="v" id="multV">×1</span></div>
+      <div class="chip help" id="roundChip" data-help="round" tabindex="0"><span class="k">第</span><span class="v" id="roundV">1</span><span class="k">局</span></div>
+      <div class="chip help" id="diffChip" data-help="diff" tabindex="0"><span class="k">难度</span><span class="v" id="diffV" style="font-family:var(--display);font-weight:400">普通</span><span class="q">?</span></div>
+      <div class="chip help" data-help="bid" tabindex="0"><span class="k">叫分</span><span class="v" id="bidV">—</span><span class="q">?</span></div>
+      <div class="chip help" data-help="bomb" tabindex="0"><span class="k">炸弹</span><span class="v" id="bombV">0</span><span class="q">?</span></div>
+      <div class="chip hot help" data-help="mult" tabindex="0"><span class="k">倍数</span><span class="v" id="multV">—</span><span class="q">?</span></div>
     </div>
     <div class="top-actions">
       <button class="btn small flagbtn" id="surBtn" type="button" disabled>认输</button>
@@ -420,6 +610,7 @@ button{font:inherit;color:inherit}
           <button type="button" role="menuitem" id="miHome"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 L12 3 L21 11 V21 H14 V15 H10 V21 H3 Z" fill="#6cc6f2" stroke="#2b211b" stroke-width="2" stroke-linejoin="round"/></svg>回主菜单</button>
           <button type="button" role="menuitem" id="miNew"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9" fill="none" stroke="#2b211b" stroke-width="2.4" stroke-linecap="round"/><path d="M18 2 L18.5 7 L13.5 7.5" fill="none" stroke="#2b211b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>新游戏</button>
           <hr>
+          <button type="button" role="menuitem" id="miTut"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#3e9a5f" stroke="#2b211b" stroke-width="2"/><path d="M9.2 9.3a2.9 2.9 0 1 1 3.9 2.7c-.7.3-1.1.9-1.1 1.6v.6" fill="none" stroke="#fffaf0" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.3" fill="#fffaf0"/></svg>新手教程</button>
           <button type="button" role="menuitem" id="miRules"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4 H11 Q12 4 12 6 V21 Q12 19 10 19 H4 Z M20 4 H13 Q12 4 12 6 V21 Q12 19 14 19 H20 Z" fill="#ffd84d" stroke="#2b211b" stroke-width="2" stroke-linejoin="round"/></svg>游戏规则</button>
           <button type="button" role="menuitem" id="miSound"></button>
         </div>
@@ -444,7 +635,7 @@ button{font:inherit;color:inherit}
         <div class="controls" id="controls"></div>
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
         <div class="hand" id="hand"></div>
-        <div class="tip">点击选牌 · 按住拖动连选 · 右键清空 · 回车出牌 · 空格不要</div>
+        <div class="tip" id="ctlTip">点击选牌 · 按住拖动连选 · 双击选同点数 · 回车出牌 · 空格不要</div>
       </div>
     </section>
   </main>
@@ -458,17 +649,28 @@ button{font:inherit;color:inherit}
 <div class="overlay" id="startOv">
   <div class="panel start">
     <h2>森林斗地主</h2>
-    <p class="lead">森林小吃团今晚开局！选一位小伙伴代表你入座，另外两位会随机来当对手。</p>
-    <div class="sec-title">选择你的角色</div>
-    <div class="picker" id="picker" role="radiogroup" aria-label="选择角色"></div>
-    <div class="sec-title">选择辣度</div>
+    <div class="how-win"><span>1 个地主对 2 个农民，</span><b>谁先把手里的牌出完，谁那一边就赢</b><button class="linkish" data-tut type="button">第一次玩？看新手教程</button></div>
+    <div class="sec-title">① 选一个你喜欢的头像<small>只换外观，不影响你的牌；另外两位会随机当你的对手</small></div>
+    <div class="picker" id="picker" role="radiogroup" aria-label="选择头像"></div>
+    <div class="sec-title">② 选择难度<small>电脑对手有多厉害</small></div>
     <div class="diffs" id="diffs" role="radiogroup" aria-label="选择难度"></div>
-    <div class="sec-title">选择份量（决定一场打多久）</div>
-    <div class="diffs" id="portions" role="radiogroup" aria-label="选择份量"></div>
+    <div class="sec-title">③ 选择游戏时长<small>每人先领一样多的松果当筹码，有人输光就结束，松果最多的人赢</small></div>
+    <div class="diffs" id="portions" role="radiogroup" aria-label="选择游戏时长"></div>
     <div class="start-actions" id="startActions"></div>
     <p class="foot" id="startFoot"></p>
   </div>
 </div>
+
+<div class="overlay" id="tutOv" hidden><div class="panel tut" id="tutPanel" role="dialog" aria-label="新手教程"></div></div>
+<div class="overlay" id="tipOv" hidden>
+  <div class="panel tipcard" role="dialog" aria-labelledby="tipTitle">
+    <div class="tip-h"><div class="tip-ic" aria-hidden="true">!</div><h2 id="tipTitle">小提示</h2></div>
+    <div id="tipBody"></div>
+    <label><input type="checkbox" id="tipOff"> 以后不再显示新手提示</label>
+    <div class="close-row"><button class="btn primary" id="tipOk" type="button">知道了</button></div>
+  </div>
+</div>
+<div class="pop" id="pop" role="tooltip" hidden></div>
 
 <div class="overlay" id="resultOv" hidden><div class="panel result" id="resultPanel"></div></div>
 <div class="overlay final" id="finalOv" hidden><div class="rays"></div><div class="panel final-panel" id="finalPanel"></div></div>
@@ -487,7 +689,7 @@ button{font:inherit;color:inherit}
     <h2>游戏规则</h2>
     <h3>开局</h3>
     <ul>
-      <li>你选一位角色，另外两位从森林小吃团里随机出场。一副牌 54 张，每人 17 张，留 3 张底牌。</li>
+      <li>你选一个头像（只换外观），另外两位森林小吃团成员当电脑对手。一副牌 54 张，每人 17 张，留 3 张底牌。</li>
       <li>轮流叫分：1 分、2 分、3 分或不叫。叫分最高的人当<b>地主</b>，拿走底牌。都不叫时，第一个叫分的人被安排当地主（1 分）。</li>
       <li><b>加倍</b>：定完地主后，两位农民先选，地主最后选。谁加倍，谁和对手之间的输赢就再 ×2。</li>
     </ul>
@@ -495,7 +697,7 @@ button{font:inherit;color:inherit}
     <ul>
       <li>地主先出。下一家要出<b>相同牌型、相同张数、更大</b>的牌，或者选择「不要」。另外两家都不要时，最后出牌的人重新自由出牌。</li>
       <li>地主一个人对抗两个农民，哪一方先有人出完牌，哪一方就赢。</li>
-      <li><b>限时</b>：每手出牌微甜 30 秒、中辣 25 秒、爆辣 20 秒，地主第一手多给 10 秒；叫分 15 秒，加倍 10 秒。时间到会自动「不要」，轮到你自由出牌时自动出最小的一张，叫分时自动「不叫」，加倍时自动「不加倍」。</li>
+      <li><b>限时</b>：每手出牌简单 40 秒、普通 25 秒、困难 20 秒，地主第一手多给 10 秒；叫分 15 秒，加倍 10 秒。时间到会自动「不要」，轮到你自由出牌时自动出最小的一张，叫分时自动「不叫」，加倍时自动「不加倍」。</li>
       <li>大小：大王 &gt; 小王 &gt; 2 &gt; A &gt; K &gt; Q &gt; J &gt; 10 … &gt; 3（花色不分大小）。</li>
     </ul>
     <h3>牌型</h3>
@@ -514,14 +716,15 @@ button{font:inherit;color:inherit}
     </div>
     <h3>松果和结算</h3>
     <ul>
-      <li>开局选份量：小份 500、中份 1000、大份 2000 颗松果。每局基础分 = 底分 20 × 叫分 × 2<sup>炸弹数</sup>，春天或反春再 ×2；谁加倍，谁和对手之间再 ×2。地主和两位农民各算一份。</li>
+      <li>开局选游戏时长：短局每人 500、中局 1000、长局 2000 颗松果。每局基础分 = 底分 20 × 叫分 × 2<sup>炸弹数</sup>，春天或反春再 ×2；谁加倍，谁和对手之间再 ×2。地主和两位农民各算一份。</li>
       <li>有人松果输光，这一场结束，松果最多的人是<b>大赢家</b>。</li>
       <li>中途认输按输计算。一局打到一半回主菜单或关掉网页，也按认输计算；叫地主阶段离开，回来会继续同一副牌。</li>
-      <li>菜单里的「新游戏」会清空整场，重新选角色、辣度和份量。</li>
+      <li>菜单里的「新游戏」会清空整场，重新选头像、难度和游戏时长。</li>
     </ul>
-    <h3>辣度</h3>
+    <h3>难度</h3>
     <ul>
-      <li><b>微甜</b>：对手会犯小迷糊。<b>中辣</b>：正常对手。<b>爆辣</b>：对手会记牌、会配合、会卡你最后一张。</li>
+      <li><b>简单</b>：电脑会放水，出牌比较随意，很少故意卡你。<b>普通</b>：正常对手。<b>困难</b>：电脑会记牌、推算剩下的牌，两个对手会互相配合。</li>
+      <li>难度只影响你的对手。你当农民时，你的电脑队友始终按普通水平帮你打。</li>
     </ul>
     <div class="close-row"><button class="btn sun" id="rulesClose" type="button">知道了</button></div>
   </div>
@@ -683,7 +886,13 @@ function leadScore(g,ctx){
   if(p.main>=15)s+=12+(ctx?ctx.per.hold*8:0);if(isBombType(p.type))s+=40;
   return s;
 }
-function ctxFor(seat){
+// Difficulty only applies to the player's opponents. The player's own teammate always plays at normal strength.
+function effDiff(seat){
+  if(seat===0)return'mid';
+  if(S.landlord>=0&&S.landlord!==0&&seat!==S.landlord)return'mid';
+  return S.diff;
+}
+function ctxFor(seat,diff){
   const isLL=seat===S.landlord;
   const enemies=[0,1,2].filter(x=>x!==seat&&(isLL||x===S.landlord));
   const mate=isLL?-1:[0,1,2].find(x=>x!==seat&&x!==S.landlord);
@@ -694,15 +903,24 @@ function ctxFor(seat){
   const aggressive=per.clutch?(enemyMin<=5?.95:.25):per.aggr;
   return{seat,isLL,mate,enemyMin,enemyCounts,enemyOne:enemyCounts.includes(1),
     mateNextOne:mate===next&&S.hands[mate].length===1,landlordNext:!isLL&&next===S.landlord,
-    per,aggressive,diff:S.diff};
+    per,aggressive,diff:diff||effDiff(seat)};
 }
+function knownKitty(){const pl=new Set(S.played.map(c=>c.id));return S.landlord>=0?S.kitty.filter(c=>!pl.has(c.id)):[];}
 function unseenFor(seat){const known=new Set(S.hands[seat].concat(S.played).map(c=>c.id));return makeDeck().filter(c=>!known.has(c.id));}
 function isSafe(g,unseen){if(isBombType(g.pat.type))return true;return!beats(unseen,g.pat).some(m=>!isBombType(analyze(m).type));}
+function pickRandom(a){return a[Math.floor(Math.random()*a.length)];}
 function chooseLead(hand,ctx){
   if(analyze(hand))return hand.slice();
   const easy=ctx.diff==='easy',hard=ctx.diff==='hard';
-  if(ctx.mateNextOne&&(hard||Math.random()<0.35+ctx.per.coop*0.6))return[hand.slice().sort((a,b)=>a.r-b.r)[0]];
   const groups=decompose(hand);
+  let cand=groups.filter(g=>!isBombType(g.pat.type));if(!cand.length)cand=groups;
+  if(easy){
+    // a relaxed opponent: often plays whatever comes to mind and never tries to block a short hand
+    if(ctx.mateNextOne&&Math.random()<0.5)return[hand.slice().sort((a,b)=>a.r-b.r)[0]];
+    if(Math.random()<0.45)return pickRandom(cand).cards.slice();
+    cand.sort((a,b)=>leadScore(a,ctx)-leadScore(b,ctx));return cand[0].cards.slice();
+  }
+  if(ctx.mateNextOne&&(hard||Math.random()<0.35+ctx.per.coop*0.6))return[hand.slice().sort((a,b)=>a.r-b.r)[0]];
   if(groups.length===2){const strong=groups.find(g=>isBombType(g.pat.type));if(strong)return strong.cards.slice();}
   if(hard&&groups.length<=4){
     const unseen=unseenFor(ctx.seat);const safe=groups.filter(g=>isSafe(g,unseen));
@@ -711,9 +929,7 @@ function chooseLead(hand,ctx){
       return safe[0].cards.slice();
     }
   }
-  let cand=groups.filter(g=>!isBombType(g.pat.type));if(!cand.length)cand=groups;
-  if(easy&&Math.random()<0.3)return cand[Math.floor(Math.random()*cand.length)].cards.slice();
-  if(ctx.enemyOne&&!(easy&&Math.random()<0.5)){
+  if(ctx.enemyOne){
     const ns=cand.filter(g=>g.pat.type!=='single');
     if(ns.length)cand=ns;else return[hand.slice().sort((a,b)=>b.r-a.r)[0]];
   }
@@ -727,16 +943,27 @@ function chooseFollow(hand,last,ctx){
   const easy=ctx.diff==='easy',hard=ctx.diff==='hard';
   const normal=all.filter(m=>!isBombType(analyze(m).type));
   const bombs=all.filter(m=>isBombType(analyze(m).type));
+  if(easy){
+    if(last.seat===ctx.mate)return normal.length&&Math.random()<0.25?normal[0]:null;
+    if(normal.length){
+      if(Math.random()<0.22)return null;
+      if(Math.random()<0.4)return pickRandom(normal);
+      let best=null,bestCost=1e9;
+      for(const m of normal){const cost=decompose(removeCards(hand,m)).length*10+analyze(m).main;if(cost<bestCost){bestCost=cost;best=m;}}
+      return best;
+    }
+    if(bombs.length){const b=bombs[0];const after=decompose(removeCards(hand,b)).length;
+      if((after<=1&&Math.random()<0.6)||(ctx.enemyMin<=1&&Math.random()<0.35))return b;}
+    return null;
+  }
   if(last.seat===ctx.mate){
-    if(easy&&normal.length&&Math.random()<0.3)return normal[0];
     if(hard&&ctx.landlordNext&&ctx.enemyMin<=2&&normal.length&&last.pat.main<14)return normal[normal.length-1];
     if(normal.length&&ctx.per.coop<0.5){for(const m of normal)if(decompose(removeCards(hand,m)).length<=1)return m;}
     return null;
   }
   const cur=decompose(hand).length;
   if(normal.length){
-    if(easy&&Math.random()<0.3)return normal[Math.floor(Math.random()*normal.length)];
-    if(last.pat.type==='single'&&ctx.enemyOne&&(hard||(!easy&&Math.random()<0.6)))return normal[normal.length-1];
+    if(last.pat.type==='single'&&ctx.enemyOne&&(hard||Math.random()<0.6))return normal[normal.length-1];
     let best=null,bestCost=1e9;
     for(const m of normal){const p=analyze(m);let cost=decompose(removeCards(hand,m)).length*10+p.main;
       if(p.main>=15&&ctx.enemyMin>4)cost+=6+ctx.per.hold*14;if(cost<bestCost){bestCost=cost;best=m;}}
@@ -748,19 +975,90 @@ function chooseFollow(hand,last,ctx){
   }
   if(bombs.length){
     const b=bombs[0];const after=decompose(removeCards(hand,b)).length;
-    if(ctx.enemyMin<=(easy?2:4)||after<=1||(!easy&&ctx.isLL&&ctx.enemyMin<=7)||(hard&&ctx.enemyMin<=6)||
-       (ctx.enemyMin<=10&&Math.random()<ctx.aggressive*(easy?0.3:0.6)))return b;
+    if(ctx.enemyMin<=4||after<=1||(ctx.isLL&&ctx.enemyMin<=7)||(hard&&ctx.enemyMin<=6)||
+       (ctx.enemyMin<=10&&Math.random()<ctx.aggressive*0.6))return b;
   }
   return null;
 }
-function aiMove(seat){const h=S.hands[seat],ctx=ctxFor(seat);return S.last?chooseFollow(h,S.last,ctx):chooseLead(h,ctx);}
+
+/* ---- hard: look-ahead by simulating the rest of the round many times ---- */
+function sampleHands(seat){
+  // what this player can know: own hand, every played card, and the 3 bottom cards the landlord picked up
+  const res=S.hands.map(h=>h.slice());
+  const kit=seat===S.landlord?[]:knownKitty();const kitIds=new Set(kit.map(c=>c.id));
+  const pool=shuffle(unseenFor(seat).filter(c=>!kitIds.has(c.id)));let k=0;
+  for(const o of [0,1,2]){if(o===seat)continue;
+    const need=S.hands[o].length;let h=o===S.landlord?kit.slice():[];
+    h=h.concat(pool.slice(k,k+need-h.length));k+=need-(o===S.landlord?kit.length:0);res[o]=sortCards(h);}
+  return res;
+}
+function playOut(me){
+  for(let t=0;t<220;t++){
+    const seat=S.turn;const m=aiMove(seat,'mid');
+    if(m&&m.length){
+      S.hands[seat]=removeCards(S.hands[seat],m);S.played=S.played.concat(m);S.last={seat,cards:m,pat:analyze(m)};S.passes=0;
+      if(!S.hands[seat].length)return (seat===S.landlord)===(me===S.landlord);
+    }else{S.passes++;if(S.passes>=2){S.last=null;S.passes=0;}}
+    S.turn=(seat+1)%3;
+  }
+  return false;
+}
+function lookAhead(seat,cands,samples){
+  const save={hands:S.hands,last:S.last,passes:S.passes,turn:S.turn,played:S.played};
+  const score=cands.map(()=>0);
+  try{
+    for(let k=0;k<samples;k++){
+      S.hands=save.hands;S.played=save.played;S.last=save.last;
+      const deal=sampleHands(seat);
+      cands.forEach((m,i)=>{
+        S.hands=deal.map(h=>h.slice());S.last=save.last;S.passes=save.passes;S.played=save.played.slice();
+        if(m&&m.length){
+          S.hands[seat]=removeCards(S.hands[seat],m);
+          if(!S.hands[seat].length){score[i]++;return;}
+          S.played=S.played.concat(m);S.last={seat,cards:m,pat:analyze(m)};S.passes=0;
+        }else{S.passes++;if(S.passes>=2){S.last=null;S.passes=0;}}
+        S.turn=(seat+1)%3;
+        if(playOut(seat))score[i]++;
+      });
+    }
+  }finally{S.hands=save.hands;S.last=save.last;S.passes=save.passes;S.turn=save.turn;S.played=save.played;}
+  return score;
+}
+const sameMove=(a,b)=>(!a||!a.length)?(!b||!b.length):(!!b&&b.length===a.length&&a.every(c=>b.some(x=>x.id===c.id)));
+function hardMove(seat,ctx){
+  const hand=S.hands[seat];
+  const base=S.last?chooseFollow(hand,S.last,ctx):chooseLead(hand,ctx);
+  const others=[0,1,2].filter(x=>x!==seat).map(x=>S.hands[x].length);
+  if(hand.length>12&&Math.min(...others)>8)return base;
+  let cands=[];
+  if(S.last){
+    const all=beats(hand,S.last.pat);if(!all.length)return null;
+    const nm=all.filter(m=>!isBombType(analyze(m).type)).map(m=>({m,c:decompose(removeCards(hand,m)).length*10+analyze(m).main})).sort((a,b)=>a.c-b.c).slice(0,5).map(x=>x.m);
+    const bm=all.filter(m=>isBombType(analyze(m).type)).slice(0,2);
+    cands=[null,...nm,...bm];
+  }else{
+    const seen=new Set();
+    decompose(hand).sort((a,b)=>leadScore(a,ctx)-leadScore(b,ctx)).forEach(g=>{const key=g.pat.type+g.pat.main+g.pat.len;if(!seen.has(key)&&cands.length<7){seen.add(key);cands.push(g.cards);}});
+    const lo=hand.slice().sort((a,b)=>a.r-b.r);cands.push([lo[0]]);
+  }
+  if(!cands.some(c=>sameMove(c,base)))cands.push(base);
+  if(cands.length<=1)return base;
+  const sc=lookAhead(seat,cands,16);
+  let bi=-1,bs=-1;cands.forEach((c,i)=>{const s=sc[i]+(sameMove(c,base)?0.5:0);if(s>bs){bs=s;bi=i;}});
+  return cands[bi];
+}
+function aiMove(seat,diff){
+  const h=S.hands[seat],ctx=ctxFor(seat,diff);
+  if(ctx.diff==='hard')return hardMove(seat,ctx);
+  return S.last?chooseFollow(h,S.last,ctx):chooseLead(h,ctx);
+}
 function handScore(seat){
   const h=S.hands[seat],br=byRank(h);let s=0;
   if(br[17])s+=4;if(br[16])s+=3;s+=R(br,15)*2;s+=R(br,14)*0.7;
   for(let r=3;r<=14;r++)if(R(br,r)===4)s+=4;
   s+=Math.max(0,9-decompose(h).length)*0.8;
   s+=(persona(seat).aggr-0.5)*3;
-  if(S.diff==='easy')s+=Math.random()*4-2;
+  if(S.diff==='easy'&&seat!==0)s+=Math.random()*4-2.5;
   return s;
 }
 function aiBid(seat,cur){const s=handScore(seat);const want=s>=13?3:s>=10?2:s>=7.5?1:0;return want>cur?want:0;}
@@ -778,12 +1076,13 @@ function computeDelta(ll,llWin,unit,chips,mul=[1,1,1]){
 const $=s=>document.querySelector(s);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const BASE=20,START=1000,KEY='forest-ddz-v3',PREF='forest-ddz-pref';
-const PORTIONS={s:{name:'小份',chips:500,time:'约 15–20 分钟'},m:{name:'中份',chips:1000,time:'约 30–40 分钟'},l:{name:'大份',chips:2000,time:'约 1 小时以上'}};
+const PORTIONS={s:{name:'短局',chips:500,time:'约 15 分钟'},m:{name:'中局',chips:1000,time:'约 30 分钟'},l:{name:'长局',chips:2000,time:'约 1 小时'}};
+const TIPKEY='forest-ddz-tips';
 const SUIT=['♠︎','♥︎','♣︎','♦︎'];
 const INK='#2b211b';
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const DIFFS={easy:{name:'微甜',desc:'对手会犯小迷糊 · 每手 30 秒'},mid:{name:'中辣',desc:'正常对手 · 每手 25 秒'},hard:{name:'爆辣',desc:'会记牌会配合 · 每手 20 秒'}};
-const TIMES={easy:30,mid:25,hard:20},BID_TIME=15,FIRST_BONUS=10,DOUBLE_TIME=10;
+const DIFFS={easy:{name:'简单',desc:'电脑会放水',time:'每手 40 秒'},mid:{name:'普通',desc:'正常对手',time:'每手 25 秒'},hard:{name:'困难',desc:'电脑会记牌',time:'每手 20 秒'}};
+const TIMES={easy:40,mid:25,hard:20},BID_TIME=15,FIRST_BONUS=10,DOUBLE_TIME=10;
 
 /* ---- characters ---- */
 const st=`stroke="${INK}" stroke-width="3.5" stroke-linejoin="round"`;
@@ -1022,9 +1321,9 @@ function backEl(cls=''){const d=document.createElement('div');d.className='card 
 function buildSeat(seat){
   const el=$('#seat'+seat);const c=charOf(seat);
   el.innerHTML=`<div class="avatar-wrap"><div class="avatar"></div><div class="role" hidden></div><div class="alert" aria-hidden="true">!</div><div class="bubble"></div></div>
-  <div class="name">${c.name}<small>${seat===0?'你':c.sp}</small></div>
-  <div class="meta">${seat?'<span class="count" title="剩余手牌"><i class="mini-back"></i><b>0</b></span>':''}<span class="score" title="松果">${CONE}<b>0</b></span></div>
-  <div class="thinking" aria-hidden="true"><i></i><i></i><i></i></div>`;
+  <div class="info"><div class="name">${c.name}<small>${seat===0?'你':c.sp}</small></div>
+  <div class="meta">${seat?'<span class="count" title="手里还剩几张牌"><i class="mini-back"></i><b>0</b><span class="u">张</span></span>':''}<span class="score" title="松果（筹码）">${CONE}<b>0</b><span class="u">松果</span></span></div>
+  <div class="thinking" aria-hidden="true"><i></i><i></i><i></i></div></div>`;
   drawAvatar(seat);
 }
 function drawAvatar(seat){const el=$('#seat'+seat+' .avatar');if(el&&SES)el.innerHTML=avatar(SES.seats[seat],S.tmpExpr[seat]||S.baseExpr[seat]);}
@@ -1053,9 +1352,29 @@ function hideBubbles(){[1,2].forEach(s=>{clearTimeout(bubbleT[s]);const b=$('#se
 function setStatus(t){$('#status').textContent=t;}
 function renderTop(){
   $('#roundV').textContent=SES?SES.round:1;$('#diffV').textContent=DIFFS[SES?SES.diff:pickDiff].name;
-  $('#bidV').textContent=S.bid?S.bid+'分':'—';$('#bombV').textContent=S.bombs;const myMul=S.landlord<0?1:S.mul[0]*(S.landlord===0?1:S.mul[S.landlord]);
-  $('#multV').textContent='×'+((S.bid||1)*2**S.bombs*myMul);
+  $('#bidV').textContent=S.bid?S.bid+'分':'—';$('#bombV').textContent=S.bombs;
+  const m=myMultiple();$('#multV').textContent=m?'×'+m:'—';
 }
+// what the player's result this round is multiplied by: result = base 20 × this number (Spring adds ×2 at the end)
+function myMultiple(){
+  if(S.landlord<0||!S.bid)return 0;const base=S.bid*2**S.bombs;
+  if(S.landlord===0)return base*S.mul[0]*(S.mul[1]+S.mul[2]);
+  return base*S.mul[0]*S.mul[S.landlord];
+}
+const HELP={
+  round:()=>'这一场已经打到第几局了。',
+  diff:()=>'电脑对手有多厉害。简单：电脑会放水；普通：正常对手；困难：电脑会记牌、互相配合。',
+  bid:()=>'叫地主时叫到的分数（1–3 分）。分数越高，这局输赢的松果越多。',
+  bomb:()=>'这局一共出了几个炸弹（王炸也算）。每出一个，这局的输赢就翻一倍。',
+  mult:()=>{
+    if(S.landlord<0)return '倍数：这局你的输赢 = 底分 20 × 倍数。定出地主后才会显示。';
+    const parts=[`叫分 ${S.bid}`];if(S.bombs)parts.push(`炸弹 ${S.bombs} 个（×${2**S.bombs}）`);
+    if(S.mul[0]===2)parts.push('你加倍了（×2）');
+    if(S.landlord===0){const d=[1,2].filter(s=>S.mul[s]===2).length;parts.push('你是地主，和两个农民分别算'+(d?`，其中 ${d} 个农民加倍了`:''));}
+    else if(S.mul[S.landlord]===2)parts.push('地主加倍了（×2）');
+    return `倍数 ×${myMultiple()}：这局你的输赢 = 底分 20 × ${myMultiple()} = ${20*myMultiple()} 松果。（${parts.join('，')}）春天或反春结算时再翻一倍。`;
+  }
+};
 function renderKitty(reveal){
   const k=$('#kitty');k.innerHTML='';
   if(reveal)S.kitty.forEach((c,i)=>{const e=cardEl(c,'mini flip');e.style.setProperty('--i',i);k.appendChild(e);});
@@ -1066,33 +1385,49 @@ function renderZone(seat,content){
   if(content.cards){
     const row=document.createElement('div');row.className='mini-row'+(content.reveal?' reveal':'');
     (content.reveal?sortCards(content.cards.slice()):sortForPlay(content.cards)).forEach((c,i)=>{const e=cardEl(c,'mini');e.style.setProperty('--i',i);row.appendChild(e);});
-    z.appendChild(row);
+    z.appendChild(row);fitMiniRow(row,z);
     if(content.reveal){const l=document.createElement('div');l.className='zone-label';l.textContent='剩余手牌';z.appendChild(l);}
     return row;
   }
   const t=document.createElement('div');t.className='ztag '+(content.kind||'');t.textContent=content.text;z.appendChild(t);return t;
 }
 function clearZones(){[0,1,2].forEach(s=>renderZone(s,null));}
+function fitMiniRow(row,z){
+  const k=row.children.length;if(k<2)return;const cw=row.firstChild.offsetWidth||54;const avail=Math.max(cw,(z.clientWidth||300)-4);
+  row.style.setProperty('--mstep',Math.max(6,Math.min(cw*0.43,(avail-cw)/(k-1)))+'px');
+}
 
 /* ---- hand ---- */
-let drag=null,dealing=false,fresh=new Set();
+let drag=null,dealing=false,fresh=new Set(),lastTap=null;
 function renderHand(){
   const el=$('#hand');el.innerHTML='';const hand=S.hands[0];const n=hand.length;
   const cw=parseFloat(getComputedStyle(el).getPropertyValue('--cw'))||78;const W=el.clientWidth||700;
-  const step=n>1?Math.max(14,Math.min(42,(W-cw-8)/(n-1))):0;el.style.setProperty('--step',step+'px');
+  const rows=(n>10&&W<560)?2:1;const per=Math.ceil(n/rows);
+  const step=per>1?Math.max(12,Math.min(42,(W-cw-6)/(per-1))):0;el.style.setProperty('--step',step+'px');
   el.classList.toggle('dealing',dealing);
-  hand.forEach((c,i)=>{
-    const d=cardEl(c);d.style.setProperty('--i',i);
-    if(S.selected.has(c.id))d.classList.add('sel');if(fresh.has(c.id))d.classList.add('fresh');
-    d.addEventListener('mousedown',e=>{if(e.button!==0)return;e.preventDefault();drag={on:!S.selected.has(c.id)};setSel(c.id,drag.on);});
-    d.addEventListener('mouseenter',()=>{if(drag)setSel(c.id,drag.on);});
-    d.addEventListener('dblclick',()=>{S.hands[0].filter(x=>x.r===c.r).forEach(x=>setSel(x.id,true));});
-    el.appendChild(d);
-  });
+  for(let r=0;r<rows;r++){
+    const row=document.createElement('div');row.className='hand-row';
+    hand.slice(r*per,(r+1)*per).forEach((c,j)=>{
+      const d=cardEl(c);d.style.setProperty('--i',r*per+j);
+      if(S.selected.has(c.id))d.classList.add('sel');if(fresh.has(c.id))d.classList.add('fresh');
+      row.appendChild(d);
+    });
+    el.appendChild(row);
+  }
   dealing=false;
 }
-document.addEventListener('mouseup',()=>{drag=null;});
-$('#hand').addEventListener('contextmenu',e=>{e.preventDefault();S.selected.clear();syncSelection();});
+const handEl=$('#hand');
+function cardAt(x,y){const t=document.elementFromPoint(x,y);const c=t&&t.closest?t.closest('#hand .card'):null;return c?+c.dataset.id:null;}
+handEl.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;const id=cardAt(e.clientX,e.clientY);if(id===null)return;e.preventDefault();
+  const c=S.hands[0].find(x=>x.id===id);if(!c)return;const now=performance.now();
+  if(lastTap&&now-lastTap.t<380&&lastTap.r===c.r){S.hands[0].filter(x=>x.r===c.r).forEach(x=>setSel(x.id,true));lastTap=null;drag=null;return;}
+  lastTap={t:now,r:c.r};drag={on:!S.selected.has(id),last:id};setSel(id,drag.on);
+  try{handEl.setPointerCapture(e.pointerId);}catch(err){}
+});
+handEl.addEventListener('pointermove',e=>{if(!drag)return;const id=cardAt(e.clientX,e.clientY);if(id!==null&&id!==drag.last){drag.last=id;setSel(id,drag.on);}});
+['pointerup','pointercancel'].forEach(t=>document.addEventListener(t,()=>{drag=null;}));
+handEl.addEventListener('contextmenu',e=>{e.preventDefault();S.selected.clear();syncSelection();});
 function setSel(id,on){
   if(S.phase==='over'||S.phase==='idle')return;if(on===S.selected.has(id))return;
   if(on)S.selected.add(id);else S.selected.delete(id);sfx.select();
@@ -1107,7 +1442,7 @@ function setControls(mode,cur=0){
   if(mode==='bid'||mode==='play'||mode==='double')c.insertAdjacentHTML('beforeend',`<div class="timer" id="timer" title="剩余时间"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="rim" cx="22" cy="22" r="20.5"/><circle class="trk" cx="22" cy="22" r="16"/><circle class="prg" cx="22" cy="22" r="16"/></svg><b>--</b></div>`);
   if(mode==='bid'){mk('不叫','',()=>resolvePlayer(0));[1,2,3].forEach(v=>mk(v+'分',v===3?'primary':'sun',()=>resolvePlayer(v),v<=cur));}
   else if(mode==='double'){mk('不加倍','',()=>resolvePlayer(false));mk('加倍','primary',()=>resolvePlayer(true));}
-  else if(mode==='play'){mk('不要','',onPass,!S.last).id='passBtn';mk('出牌','primary',onPlay).id='playBtn';updatePlayBtn();}
+  else if(mode==='play'){mk('重选','ghost',()=>{S.selected.clear();syncSelection();}).id='clearBtn';mk('不要','',onPass,!S.last).id='passBtn';mk('出牌','primary',onPlay).id='playBtn';updatePlayBtn();}
 }
 function updatePlayBtn(){
   const b=$('#playBtn');if(!b)return;const cards=S.hands[0].filter(c=>S.selected.has(c.id));const p=cards.length?analyze(cards):null;
@@ -1174,6 +1509,7 @@ async function bidPhase(tok){
   for(let i=0;i<3;i++){
     const seat=(start+i)%3;setActive(seat);let v;
     if(seat===0){setStatus(cur?`当前 ${cur} 分，你要叫吗？`:'轮到你叫地主');setControls('bid',cur);
+      await showTip('bid');if(tok!==S.token)return abort;
       startTimer(BID_TIME,()=>{toast('时间到，自动不叫');resolvePlayer(0);});
       v=await waitPlayer();stopTimer();if(tok!==S.token)return abort;setControls('none');}
     else{setStatus(`${charOf(seat).name}在考虑叫分…`);thinking(seat,true);await sleep(900+Math.random()*500);thinking(seat,false);if(tok!==S.token)return abort;
@@ -1192,6 +1528,7 @@ async function doublePhase(tok){
     setActive(seat);let v;
     if(seat===0){
       setStatus(ll===0?'农民选完了，你要加倍吗？':'你要加倍吗？赢输都会翻倍');setControls('double');
+      await showTip('double');if(tok!==S.token)return false;
       startTimer(DOUBLE_TIME,()=>{toast('时间到，自动不加倍');resolvePlayer(false);});
       v=await waitPlayer();stopTimer();if(tok!==S.token)return false;setControls('none');
     }else{
@@ -1218,12 +1555,14 @@ async function specialFx(seat,pat,row){
 }
 async function playPhase(tok){
   S.turn=S.landlord;S.last=null;S.passes=0;
+  await showTip(S.landlord===0?'roleLL':'roleFarmer');if(tok!==S.token)return;
   while(true){
     const seat=S.turn;setActive(seat);let move;renderZone(seat,null);
     if(seat===0){
       const can=!S.last||beats(S.hands[0],S.last.pat).length>0;
       setStatus(!S.last?'轮到你出牌':can?'轮到你：压过上家，或者不要':'要不起，点「不要」');
       setControls('play');
+      await showTip(!S.last?'lead':'follow');if(tok!==S.token)return;
       const firstLead=!S.last&&S.landlord===0&&S.playCount[0]===0;
       startTimer(TIMES[S.diff]+(firstLead?FIRST_BONUS:0),()=>{
         S.selected.clear();syncSelection();
@@ -1311,7 +1650,8 @@ function showResult({delta,spring,llWin,unit,bombMul,surrendered}){
   if(spring)parts.push(llWin?'春天 ×2':'反春 ×2');
   const dbl=[0,1,2].filter(s=>S.mul[s]===2);if(dbl.length)parts.push('加倍：'+dbl.map(s=>s===0?'你':charOf(s).name).join('、'));
   if(surrendered)parts.push('你认输了');
-  const formula=`底分 ${BASE} × ${S.bid}${S.bombs?` × ${bombMul}`:''}${spring?' × 2':''} = ${unit}`;
+  const N=myMultiple()*(spring?2:1),expect=BASE*N;
+  const formula=`你的倍数 ×${N}：底分 ${BASE} × ${N} = ${expect} 松果`+(Math.abs(delta[0])<expect?(win?'（对手松果不够，只能赢到这么多）':'（松果不够，扣到 0 为止）'):'');
   const busted=[0,1,2].filter(s=>SES.chips[s]<=0).map(s=>s===0?'你':charOf(s).name);
   const title=surrendered?'认输了…':win?'你赢啦！':'这局输了';
   const p=$('#resultPanel');p.className='panel result '+(surrendered?'sur':win?'win':'lose');
@@ -1353,15 +1693,15 @@ function showFinal(){
 /* ---- start screen ---- */
 function openStart(){
   stopTimer();S.token++;S.phase='idle';
-  $('#picker').innerHTML=CHARS.map((c,i)=>`<button class="pick" type="button" role="radio" aria-checked="${i===pickMe}" data-i="${i}"><div class="avatar">${avatar(i,i===pickMe?'happy':'normal')}</div><b>${c.name}<small>${c.sp}</small></b><span>${c.desc}</span></button>`).join('');
-  const icons={easy:CANDY,mid:CHILI+CHILI,hard:CHILI+CHILI+CHILI};
-  $('#diffs').innerHTML=Object.keys(DIFFS).map(k=>`<button class="diffbtn" type="button" role="radio" aria-checked="${k===pickDiff}" data-d="${k}"><span class="ic">${icons[k]}</span><b>${DIFFS[k].name}</b><span>${DIFFS[k].desc}</span></button>`).join('');
-  $('#portions').innerHTML=Object.keys(PORTIONS).map((k,i)=>`<button class="diffbtn" type="button" role="radio" aria-checked="${k===pickPortion}" data-p="${k}"><span class="ic">${CONE.repeat(i+1)}</span><b>${PORTIONS[k].name}</b><span>${PORTIONS[k].chips} 松果 · ${PORTIONS[k].time}</span></button>`).join('');
+  $('#picker').innerHTML=CHARS.map((c,i)=>`<button class="pick" type="button" role="radio" aria-checked="${i===pickMe}" data-i="${i}"><div class="avatar">${avatar(i,i===pickMe?'happy':'normal')}</div><b>${c.name}<small>${c.sp}</small></b><span>当对手时：${c.desc}</span></button>`).join('');
+  const icons={easy:CHILI,mid:CHILI+CHILI,hard:CHILI+CHILI+CHILI};
+  $('#diffs').innerHTML=Object.keys(DIFFS).map(k=>`<button class="diffbtn" type="button" role="radio" aria-checked="${k===pickDiff}" data-d="${k}"><span class="ic">${icons[k]}</span><b>${DIFFS[k].name}</b><span>${DIFFS[k].desc}<br>${DIFFS[k].time}</span></button>`).join('');
+  $('#portions').innerHTML=Object.keys(PORTIONS).map((k,i)=>`<button class="diffbtn" type="button" role="radio" aria-checked="${k===pickPortion}" data-p="${k}"><span class="ic">${CONE.repeat(i+1)}</span><b>${PORTIONS[k].name}</b><span>${PORTIONS[k].time}<br>每人 ${PORTIONS[k].chips} 松果</span></button>`).join('');
   const acts=$('#startActions');
   if(SES){acts.innerHTML=`<button class="btn primary big" id="contBtn" type="button">继续上一场</button><button class="btn sun big" id="newSesBtn" type="button">新游戏</button>`;
-    $('#startFoot').innerHTML=`上一场：你是${CHARS[SES.seats[0]].name} · ${DIFFS[SES.diff].name} · ${PORTIONS[SES.portion||'m'].name}，已打 ${SES.stats.rounds} 局，你有 ${CONE} ${SES.chips[0]} 颗松果。${SES.pending?'<br>上一局没打完，继续时会按认输结算。':''}<br>点「新游戏」会清空上一场，用上面选的角色、辣度和份量重新开始。 · <button class="linkish" data-rules type="button">规则</button>`;}
+    $('#startFoot').innerHTML=`上一场：你是${CHARS[SES.seats[0]].name} · ${DIFFS[SES.diff].name} · ${PORTIONS[SES.portion||'m'].name}，已打 ${SES.stats.rounds} 局，你有 ${CONE} ${SES.chips[0]} 颗松果。${SES.pending?'<br>上一局没打完，继续时会按认输结算。':''}<br>点「新游戏」会清空上一场，用上面选的头像、难度和时长重新开始。 · <button class="linkish" data-rules type="button">完整规则</button>`;}
   else{acts.innerHTML=`<button class="btn primary big" id="newSesBtn" type="button">开始游戏</button>`;
-    $('#startFoot').innerHTML=`按份量领松果开局，有人输光就结算，松果最多的是大赢家。 · <button class="linkish" data-rules type="button">规则</button>`;}
+    $('#startFoot').innerHTML=`<button class="linkish" data-rules type="button">查看完整规则</button>`;}
   $('#startOv').hidden=false;
 }
 $('#picker').addEventListener('click',e=>{const b=e.target.closest('.pick');if(!b)return;pickMe=+b.dataset.i;savePref();
@@ -1444,13 +1784,91 @@ $('#miHome').addEventListener('click',async()=>{
 });
 $('#miNew').addEventListener('click',async()=>{
   closeMenu();
-  const ok=await askConfirm({icon:RESET_ICON,title:'开始新游戏？',body:'这一场的松果、局数和战绩都会清零，重新选角色、辣度和份量。',ok:'清空重来',cancel:'再想想'});
+  const ok=await askConfirm({icon:RESET_ICON,title:'开始新游戏？',body:'这一场的松果、局数和战绩都会清零，重新选头像、难度和游戏时长。',ok:'清空重来',cancel:'再想想'});
   if(!ok)return;
   stopTimer();S.token++;S.resolve=null;SES=null;saveSES();
   $('#resultOv').hidden=true;$('#finalOv').hidden=true;
   idleTable();openStart();
 });
 $('#miRules').addEventListener('click',()=>{closeMenu();$('#rulesOv').hidden=false;$('#rulesClose').focus();});
+$('#miTut').addEventListener('click',()=>{closeMenu();openTutorial();});
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-tut]'))openTutorial();});
+
+/* ---- first-time tips (they explain rules, never which cards to play) ---- */
+let TIPS={seen:{},off:false};
+try{const t=JSON.parse(localStorage.getItem(TIPKEY)||'null');if(t&&typeof t==='object')TIPS={seen:t.seen||{},off:!!t.off,tut:!!t.tut};}catch(e){}
+function saveTips(){try{localStorage.setItem(TIPKEY,JSON.stringify(TIPS));}catch(e){}}
+const isTouch=matchMedia('(pointer: coarse)').matches;
+const TIP_TEXT={
+  bid:['叫分：抢着当地主','叫分就是抢着当地主。叫得最高的人当地主，多拿 3 张底牌，一个人对付另外两个人。','叫分越高，这局输赢的松果越多。不想当地主就点「不叫」。'],
+  double:['要不要加倍？','选「加倍」，这局你赢的和输的松果都会翻一倍。','没把握就点「不加倍」。'],
+  roleLL:['你是地主','你要一个人对付两个农民。地主先出牌，你先把牌出完就赢。'],
+  roleFarmer:['你是农民','另一个农民是你的队友，你们一起对付地主。','你们俩谁先把牌出完，你们俩都算赢。'],
+  lead:['轮到你先出','现在可以出任何牌型：单张、对子、顺子都行。',isTouch?'点牌选中（再点一下取消），然后点「出牌」。快速点两下可以选中同点数的所有牌。':'点牌选中（再点一下取消），然后点「出牌」。双击一张牌可以选中同点数的所有牌。'],
+  follow:['怎么压牌','上家出了牌，你要出<b>一样的牌型、一样的张数、比它大</b>的牌才能压住。','压不住或不想压，就点「不要」。炸弹（四张一样的）能压任何普通牌，王炸最大。'],
+};
+let tipResolve=null;
+function showTip(key){
+  if(TIPS.off||TIPS.seen[key]||!TIP_TEXT[key])return Promise.resolve();
+  TIPS.seen[key]=true;saveTips();
+  const [title,...lines]=TIP_TEXT[key];
+  $('#tipTitle').textContent=title;$('#tipBody').innerHTML=lines.map(l=>`<p>${l}</p>`).join('');$('#tipOff').checked=false;
+  $('#tipOv').hidden=false;$('#tipOk').focus();
+  return new Promise(res=>{tipResolve=res;});
+}
+function closeTip(){$('#tipOv').hidden=true;if($('#tipOff').checked){TIPS.off=true;saveTips();}const r=tipResolve;tipResolve=null;if(r)r();}
+$('#tipOk').addEventListener('click',closeTip);
+
+/* ---- tutorial ---- */
+const C=(r,s=0)=>({id:-1,r,s});
+function cardsHTML(list){const w=document.createElement('div');w.className='tcards';list.forEach(c=>w.appendChild(cardEl(c,'mini')));return w.outerHTML;}
+const TUT=[
+  ()=>({t:'谁和谁打？',v:`<div class="who"><div class="avatar">${avatar(0,'smug')}</div><span class="tag ll">地主</span></div><div class="vs">1 对 2</div>
+      <div class="who"><div class="avatar">${avatar(3,'normal')}</div><span class="tag">农民</span></div><div class="who"><div class="avatar">${avatar(5,'happy')}</div><span class="tag">农民</span></div>`,
+    l:['3 个人一起玩：<b>1 个地主</b>对 <b>2 个农民</b>，两个农民是一伙的。','<b>谁先把手里的牌全部出完，谁那一边就赢。</b>地主出完，地主赢；任何一个农民出完，两个农民都赢。','你和两位电脑小伙伴一起打，谁当地主由叫分决定。']}),
+  ()=>({t:'开局：叫地主和加倍',v:`<div class="tcol">${cardsHTML([C(14),C(9,1),C(5)])}<span>每人 17 张</span></div><div class="tcol">${(()=>{const w=document.createElement('div');w.className='tcards';for(let i=0;i<3;i++)w.appendChild(backEl('mini'));return w.outerHTML;})()}<span>3 张底牌</span></div>`,
+    l:['每人发 17 张牌，桌上留 3 张<b>底牌</b>。','<b>叫分</b>：大家轮流叫 1 分、2 分、3 分，或者「不叫」。叫得最高的人当地主，拿走 3 张底牌。叫分越高，输赢的松果越多。','都没人叫时，第一个叫分的人当地主（1 分）。','<b>加倍</b>：定出地主后，每个人可以选「加倍」，加倍的人这局输赢翻一倍。']}),
+  ()=>({t:'怎么出牌？',v:`<div class="tcol">${cardsHTML([C(7)])}<span>上家出</span></div><div class="tmark">→</div><div class="tcol">${cardsHTML([C(9,1)])}<span>可以压</span></div><div class="tmark ok">✓</div>
+      <div class="tcol">${cardsHTML([C(5),C(5,2)])}<span>不能压</span></div><div class="tmark no">✗</div>`,
+    l:['地主先出。下一个人要出<b>一样的牌型、一样的张数、更大</b>的牌，压不住或不想压就点「不要」。','另外两个人都「不要」时，最后出牌的人可以重新随便出。',`牌的大小（从小到大）：<span class="rank-row">${[3,10,11,12,13,14,15].map(r=>cardsHTML([C(r,r%2)])).join('<span class="lt">&lt;</span>')}<span class="lt">&lt;</span>${cardsHTML([C(16,4)])}<span class="lt">&lt;</span>${cardsHTML([C(17,4)])}</span>　花色不分大小。`]}),
+  ()=>({t:'常见牌型',v:null,
+    types:[['单张','一张',[C(8)]],['对子','两张一样',[C(8),C(8,1)]],['三带一','三张一样 + 一张',[C(6),C(6,1),C(6,2),C(3)]],['三带二','三张一样 + 一对',[C(6),C(6,1),C(6,2),C(4),C(4,1)]],
+      ['顺子','连着的 5 张以上',[C(3),C(4,1),C(5),C(6,3),C(7)]],['连对','连着的 3 对以上',[C(3),C(3,1),C(4),C(4,1),C(5),C(5,1)]],
+      ['飞机','连着的两个三张',[C(9),C(9,1),C(9,2),C(10),C(10,1),C(10,2)]],['四带二','四张一样 + 两张',[C(5),C(5,1),C(5,2),C(5,3),C(3),C(7)]],
+      ['炸弹','四张一样，能压任何普通牌',[C(8),C(8,1),C(8,2),C(8,3)]],['王炸','大小王，全场最大',[C(16,4),C(17,4)]]],
+    l:['顺子和连对最大到 A，不能带 2 和大小王。','飞机可以再带同样数量的单张或对子，比如两个三张带两张单牌。']}),
+  ()=>({t:'松果和输赢',v:`<div class="formula" style="margin:0">这局输赢 = 底分 20 × 叫分 × 炸弹翻倍 × 加倍</div>`,
+    l:['每人开局领一样多的<b>松果</b>当筹码，赢了拿松果，输了给松果。','地主一个人对两个人，所以地主赢或输都是<b>两份</b>。','每出一个炸弹（王炸也算），这局输赢再翻一倍。<b>春天</b>（农民一张牌都没出就输了）或<b>反春</b>（地主只出了一手）再翻一倍。','有人松果输光，这一场就结束，<b>松果最多的人是大赢家</b>。','每一手都有时间限制。中途想放弃可以点右上角「认输」，按输计算。']}),
+];
+let tutIdx=0;
+function openTutorial(){tutIdx=0;renderTut();$('#tutOv').hidden=false;}
+function closeTutorial(){$('#tutOv').hidden=true;TIPS.tut=true;saveTips();}
+function renderTut(){
+  const st=TUT[tutIdx]();const last=tutIdx===TUT.length-1;
+  const visual=st.types?`<div class="types">${st.types.map(([n,d,cs])=>`<div class="type"><div><b>${n}</b><small>${d}</small></div>${cardsHTML(cs)}</div>`).join('')}</div>`:`<div class="tut-visual">${st.v}</div>`;
+  $('#tutPanel').innerHTML=`<div class="tut-step">第 ${tutIdx+1} 步 / 共 ${TUT.length} 步</div><h2>${st.t}</h2>${visual}<ul>${st.l.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <div class="tut-nav"><button class="linkish tut-skip" type="button" id="tutSkip">${last?'':'跳过教程'}</button><div class="dots">${TUT.map((_,i)=>`<i class="${i===tutIdx?'on':''}"></i>`).join('')}</div>
+    <div style="display:flex;gap:8px">${tutIdx?'<button class="btn" type="button" id="tutPrev">上一步</button>':''}<button class="btn primary" type="button" id="tutNext">${last?'我学会了':'下一步'}</button></div></div>`;
+  $('#tutSkip').hidden=last;
+  $('#tutSkip').onclick=closeTutorial;if($('#tutPrev'))$('#tutPrev').onclick=()=>{tutIdx--;renderTut();};
+  $('#tutNext').onclick=()=>{if(last)closeTutorial();else{tutIdx++;renderTut();}};
+  $('#tutNext').focus();$('#tutOv').scrollTop=0;
+}
+
+/* ---- help popovers on the top chips ---- */
+const pop=$('#pop');let popFor=null;
+function showPop(chip){const f=HELP[chip.dataset.help];if(!f)return;pop.innerHTML=f();pop.hidden=false;popFor=chip;
+  const r=chip.getBoundingClientRect();const pw=pop.offsetWidth;let x=r.left+r.width/2-pw/2;x=Math.max(16,Math.min(innerWidth-16-pw,x));
+  pop.style.left=x+'px';pop.style.top=(r.bottom+10)+'px';}
+function hidePop(){pop.hidden=true;popFor=null;}
+document.querySelectorAll('.chip.help').forEach(ch=>{
+  ch.addEventListener('mouseenter',()=>{if(!isTouch)showPop(ch);});ch.addEventListener('mouseleave',()=>{if(!isTouch)hidePop();});
+  ch.addEventListener('focus',()=>showPop(ch));ch.addEventListener('blur',hidePop);
+  ch.addEventListener('click',e=>{e.stopPropagation();if(popFor===ch)hidePop();else showPop(ch);});
+});
+document.addEventListener('click',()=>{if(popFor)hidePop();});
+window.addEventListener('scroll',()=>{if(popFor)hidePop();},{passive:true});
+if(isTouch)$('#ctlTip').textContent='点牌选中 · 滑动连选 · 快点两下选同点数';
 $('#miSound').addEventListener('click',()=>{SND.on=!SND.on;savePref();paintSound();if(SND.on)sfx.select();});
 
 /* ---- misc wiring ---- */
@@ -1459,6 +1877,8 @@ paintSound();
 $('#rulesClose').addEventListener('click',()=>{$('#rulesOv').hidden=true;});
 $('#rulesOv').addEventListener('click',e=>{if(e.target.id==='rulesOv')$('#rulesOv').hidden=true;});
 document.addEventListener('keydown',e=>{
+  if(!$('#tutOv').hidden){if(e.key==='Escape')closeTutorial();return;}
+  if(!$('#tipOv').hidden){if(e.key==='Escape'||e.key==='Enter'){e.preventDefault();closeTip();}return;}
   if(!$('#rulesOv').hidden){if(e.key==='Escape')$('#rulesOv').hidden=true;return;}
   if(!$('#confirmOv').hidden){if(e.key==='Escape')closeConfirm(false);return;}
   if(!$('#menu').hidden&&e.key==='Escape'){closeMenu();return;}
@@ -1467,11 +1887,12 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Enter'){e.preventDefault();onPlay();}
   else if(e.key===' '){e.preventDefault();onPass();}
 });
-let rz;window.addEventListener('resize',()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{fitCanvas();if(S.hands[0].length)renderHand();});});
+let rz;window.addEventListener('resize',()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{fitCanvas();hidePop();if(S.hands[0].length)renderHand();document.querySelectorAll('.zone').forEach(z=>{const r=z.querySelector('.mini-row');if(r)fitMiniRow(r,z);});});});
 
 // idle table behind the start screen
 idleTable();
 openStart();
+if(!TIPS.tut)openTutorial();
 </script>
 
 </body>
