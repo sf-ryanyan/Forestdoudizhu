@@ -7,7 +7,7 @@
 
 🎮 **[Play Now · 立即开玩](https://sf-ryanyan.github.io/Forestdoudizhu/)**
 
-`1 Landlord vs 2 Farmers` · `6 Characters` · `3 Spice Levels` · `No Download`
+`1 Landlord vs 2 Farmers` · `Beginner Tutorial` · `Phone · Tablet · Computer` · `No Download`
 
 </div>
 
@@ -15,12 +15,9 @@
 
 ## 🌟 Overview · 游戏简介
 
-Dou Dizhu is a classic Chinese card game: one **landlord** plays against two **farmers**. In Forest Dou Dizhu, you pick a cute animal from the **Forest Snack Squad** and play against two AI friends. Each match keeps going until someone runs out of pinecones — then the big winner takes the podium!
+Pick a cute animal from the **Forest Snack Squad** and play Dou Dizhu, the classic Chinese card game where one landlord takes on two farmers, against two AI friends until someone runs out of pinecones.
 
-斗地主是经典的中国纸牌游戏：一位**地主**对抗两位**农民**。在森林斗地主里，你选一只「森林小吃团」的小动物入座，和两位 AI 小伙伴对战。一直打到有人松果输光，最后由大赢家登上领奖台！
-
-> 💡 Free to play in your browser. No install, no sign-up. The game interface is in Chinese.
-> 💡 浏览器直接玩，免安装、免注册。游戏界面为中文。
+选一只「森林小吃团」的小动物，和两位 AI 小伙伴打一场一个地主对两个农民的经典斗地主，打到有人松果输光为止。
 
 ---
 
@@ -28,12 +25,14 @@ Dou Dizhu is a classic Chinese card game: one **landlord** plays against two **f
 
 | | English | 中文 |
 |:-:|---|---|
-| 🐾 | **6 original characters**, each with its own play style and changing facial expressions | **6 位原创角色**，各有出牌性格，头像会随局势变表情 |
-| 🌶️ | **3 spice levels** — from relaxed to brain-burning | **3 档辣度**，从轻松到烧脑 |
-| 🍱 | **3 portion sizes** — choose how long a match lasts | **3 种份量**，自己决定一场打多久 |
-| ✖️2️⃣ | **Double the stakes** after the landlord is chosen | **加倍玩法**，定完地主可以翻倍下注 |
-| ⏱️ | **Turn timer, no hints** — every move is your own call | **出牌限时、没有提示**，全靠自己算牌 |
+| 📖 | **Beginner tutorial** — 5 short picture steps, plus one-line rule tips the first time you bid, double, or play | **新手教程**：5 步图文教学，第一次叫分、加倍、出牌时还有一句话规则提示 |
+| 🐾 | **6 original characters** with changing facial expressions | **6 位原创角色**，头像会随局势变表情 |
+| 🌶️ | **3 difficulty levels** that really play differently | **3 档难度**，电脑水平真的不一样 |
+| ⏳ | **3 game lengths** — from about 15 minutes to 1 hour | **3 种游戏时长**，从 15 分钟到 1 小时 |
+| ✖️2️⃣ | **Double the stakes** after the landlord is chosen | **加倍玩法**，定完地主可以翻倍 |
+| ⏱️ | **Turn timer, no hints** — every move is your own call | **出牌限时、没有出牌提示**，全靠自己算牌 |
 | 💥 | **Special effects & sounds** for straights, airplanes, bombs, rockets and more | **特色牌特效和音效**：顺子、飞机、炸弹、王炸都有专属动画 |
+| 📱 | **Plays on phone, tablet and computer** — on phones your cards split into two rows | **手机、平板、电脑都能玩**，手机上手牌自动分两排 |
 | 🏆 | **Final awards** — a winner's podium plus fun titles | **总结算颁奖**：领奖台 + 趣味称号 |
 | ⚖️ | **Fair play** — no redeals, and leaving mid-round counts as a forfeit | **公平机制**：不能重新发牌，中途离开算认输 |
 
@@ -41,7 +40,11 @@ Dou Dizhu is a classic Chinese card game: one **landlord** plays against two **f
 
 ## 🐾 Meet the Forest Snack Squad · 认识森林小吃团
 
-| | Name · 名字 | Play Style | 出牌风格 |
+Your character is just your avatar. It only changes how you look, not your cards. The play style below is how each character plays **as your opponent**.
+
+你选的角色只是头像，只换外观，不影响你的牌。下面的出牌风格是这个角色**当你的对手时**的打法。
+
+| | Name · 名字 | Play Style as Opponent | 当对手时的风格 |
 |:-:|---|---|---|
 | 🦊 | **辣条 Latiao** | Bold and risky, loves throwing bombs | 嘴硬爱冒险，最爱扔炸弹 |
 | 🐼 | **汤圆 Tangyuan** | Slow and steady, never wastes big cards | 慢吞吞但很稳，从不乱出大牌 |
@@ -50,27 +53,28 @@ Dou Dizhu is a classic Chinese card game: one **landlord** plays against two **f
 | 🐹 | **瓜子 Guazi** | Hoards big cards until the very end | 囤牌狂魔，大牌捂到最后 |
 | 🐰 | **棉花糖 Mianhuatang** | Fast hands, loves straights and pairs | 手快，最爱出顺子和连对 |
 
-You choose 1 character. The other 2 join at random. · 你选 1 位，另外 2 位随机出场。
-
 ---
 
 ## 🎲 Before You Start · 开局设置
 
-**🌶️ Spice Level · 辣度**
+**🌶️ Difficulty · 难度**
 
-| Level · 辣度 | Opponents · 对手表现 | Time per Turn · 每手限时 |
+| Level · 难度 | Computer Opponents · 电脑对手 | Time per Turn · 每手限时 |
 |---|---|:-:|
-| 🍬 Mild Sweet · 微甜 | Make silly mistakes sometimes · 偶尔犯小迷糊 | 30s |
-| 🌶️🌶️ Medium Spicy · 中辣 | Normal opponents · 正常对手 | 25s |
-| 🌶️🌶️🌶️ Extra Spicy · 爆辣 | Remember cards, team up, block your last card · 会记牌、会配合、会卡你最后一张 | 20s |
+| 🌶️ Easy · 简单 | Go easy on you, play loosely, rarely block you · 会放水，出牌随意，很少故意卡你 | 40s |
+| 🌶️🌶️ Normal · 普通 | Normal opponents · 正常对手 | 25s |
+| 🌶️🌶️🌶️ Hard · 困难 | Remember played cards, plan the endgame, team up · 会记牌、会算残局、会互相配合 | 20s |
 
-**🍱 Portion Size · 份量**
+> 💡 Difficulty only affects your opponents. When you are a farmer, your computer teammate always plays at Normal level.
+> 💡 难度只影响你的对手。你当农民时，电脑队友始终按普通水平帮你打。
 
-| Portion · 份量 | Starting Pinecones · 起始松果 | Match Length · 大约时长 |
+**⏳ Game Length · 游戏时长**
+
+| Length · 时长 | Starting Pinecones · 每人松果 | About · 大约 |
 |---|:-:|---|
-| Small · 小份 | 🌰 500 | 15–20 min · 分钟 |
-| Medium · 中份 | 🌰 1,000 | 30–40 min · 分钟 |
-| Large · 大份 | 🌰 2,000 | 1 hr+ · 1 小时以上 |
+| Short · 短局 | 🌰 500 | 15 min · 分钟 |
+| Medium · 中局 | 🌰 1,000 | 30 min · 分钟 |
+| Long · 长局 | 🌰 2,000 | 1 hr · 小时 |
 
 ---
 
@@ -122,19 +126,21 @@ If the landlord plays all cards first, the landlord wins. If either farmer finis
 ## 🌰 Scoring · 计分
 
 ```
-Base Score 基础分 = 20 × Bid 叫分 × 2^Bombs 炸弹数
-Spring / Reverse Spring 春天 / 反春 → × 2
-Doubling 加倍 → × 2 for that player · 谁加倍谁翻倍
+Your Result 你的输赢 = 20 × Multiplier 倍数
+Multiplier 倍数 = Bid 叫分 × 2 for each Bomb 每个炸弹 ×2 × Doubling 加倍
 ```
 
-- 🌸 **Spring · 春天**: the landlord wins before the farmers play a single card · 地主赢，农民一张牌都没出
-- 🌸 **Reverse Spring · 反春**: the farmers win after the landlord plays only once · 农民赢，地主只出过一手
+- 👑 **Landlord · 地主**: plays against both farmers, so wins or loses **two shares** · 一个人对两个人，输赢是**两份**
+- 🌸 **Spring · 春天**: the landlord wins before the farmers play a single card → × 2 · 地主赢，农民一张牌都没出 → 再 ×2
+- 🌸 **Reverse Spring · 反春**: the farmers win after the landlord plays only once → × 2 · 农民赢，地主只出过一手 → 再 ×2
+- ❓ Tap the **?** next to Bid, Bombs, and Multiplier at the top of the screen for a quick explanation · 点屏幕顶部叫分、炸弹、倍数旁边的 **?**，可以看说明
 - 🏁 The match ends when any player runs out of pinecones. Most pinecones wins! · 有人松果输光就结算，松果最多的是大赢家！
 
 ---
 
 ## ⏱️ Time Limits · 限时规则
 
+- Per turn: Easy **40s**, Normal **25s**, Hard **20s** · 每手：简单 **40 秒**，普通 **25 秒**，困难 **20 秒**
 - The landlord gets **+10 seconds** on the first turn · 地主第一手多 **10 秒**
 - Bidding **15s**, Doubling **10s** · 叫分 **15 秒**，加倍 **10 秒**
 - Time's up → auto pass, or play your lowest card if you must lead · 时间到自动「不要」，轮到你自由出牌时自动出最小的一张
@@ -143,15 +149,15 @@ Doubling 加倍 → × 2 for that player · 谁加倍谁翻倍
 
 ## 🖱️ Controls · 操作
 
-| Action · 操作 | How · 方式 |
-|---|---|
-| Select cards · 选牌 | Click, or click and drag · 点击，或按住拖动连选 |
-| Select same rank · 选同点数 | Double-click a card · 双击一张牌 |
-| Clear selection · 清空选择 | Right-click your hand · 在手牌区点右键 |
-| Play · 出牌 | **Play** button or `Enter` · 「出牌」按钮或回车 |
-| Pass · 不要 | **Pass** button or `Space` · 「不要」按钮或空格 |
-| Forfeit · 认输 | Top-right button · 右上角按钮 |
-| Menu · 菜单 | Main Menu · New Game · Rules · Sound · 回主菜单 · 新游戏 · 规则 · 声音 |
+| Action · 操作 | Computer · 电脑 | Phone & Tablet · 手机 / 平板 |
+|---|---|---|
+| Select cards · 选牌 | Click, or click and drag · 点击，或按住拖动 | Tap, or slide your finger · 点选，或手指滑过 |
+| Select same rank · 选同点数 | Double-click a card · 双击 | Tap twice quickly · 快速点两下 |
+| Clear selection · 清空选择 | Right-click or **Clear** · 右键或「重选」 | **Clear** button · 「重选」按钮 |
+| Play · 出牌 | **Play** or `Enter` · 「出牌」或回车 | **Play** button · 「出牌」按钮 |
+| Pass · 不要 | **Pass** or `Space` · 「不要」或空格 | **Pass** button · 「不要」按钮 |
+| Forfeit · 认输 | Top-right button · 右上角按钮 | Top-right button · 右上角按钮 |
+| Menu · 菜单 | Main Menu · New Game · Tutorial · Rules · Sound · 回主菜单 · 新游戏 · 新手教程 · 规则 · 声音 | Same · 同左 |
 
 ---
 
